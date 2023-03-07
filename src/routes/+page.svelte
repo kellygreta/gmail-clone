@@ -1,10 +1,15 @@
 <script>
+	import Sidebar from './Sidebar.svelte';
+
+	//TODO dividere la pagina in compnenti
+	//(navbar laterale, barra di ricerca, tabella delle email in arrivo, nuova email)
+
 	//TODO prendere i sender in modo casuale da https://jsonplaceholder.typicode.com/users
 
 	//TODO Le mail devono essere salvate, indipendentemente da refresh o stop dell’applicazione.
 	//TODO Le mail possono essere ordinabili per data, dalla più recente a quella più vecchia e viceversa
 
-	function addSuccess() {
+	/*function addSuccess() {
 		var success = document.getElementById('successImport');
 		success.style.display = 'block';
 	}
@@ -72,6 +77,7 @@
 		//TODO controllo validità email
 
 		emails.push(email);
+		addSuccess();
 
 		window.localStorage.setItem('emails', JSON.stringify(emails));
 	}
@@ -93,7 +99,7 @@
 	}*/
 </script>
 
-<h1>Gmail</h1>
+<Sidebar />
 
 <!--TODO Le mail potranno essere divise tra: “in arrivo”, “bozze”, “speciali” -->
 <div>in arrivo, speciali, bozze, eliminati</div>
@@ -114,8 +120,8 @@
 			id="cerca"
 			class="form-control"
 			type="text"
-			placeholder="cerca una playlist.."
-			onkeyup="searchMail()"
+			placeholder="cerca una mail.."
+			on:keyup={searchMail()}
 		/>
 	</form>
 </div>
@@ -134,7 +140,7 @@
 </div>
 
 <div class="container m-3">
-	<form on:submit={addEmail}>
+	<form on:submit={addEmail()}>
 		<div class="m-3 grid-cols-1">
 			A <input
 				name="recipient"
