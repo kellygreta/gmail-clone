@@ -1,5 +1,6 @@
 <script>
 	import Sidebar from './Sidebar.svelte';
+	import TopNavbar from './TopNavbar.svelte';
 
 	//TODO dividere la pagina in compnenti
 	//(navbar laterale, barra di ricerca, tabella delle email in arrivo, nuova email)
@@ -13,39 +14,6 @@
 		var success = document.getElementById('successImport');
 		success.style.display = 'block';
 	}
-
-	function searchMail() {
-		var tbody = document.getElementById('resultMail');
-		tbody.innerHTML = '';
-
-		var emails = window.localStorage.getItem('emails');
-		var query = document.getElementById('cerca').value;
-
-		if (query.length > 1 && emails != null) {
-			emails = JSON.parse(emails);
-			for (var i = 0; i < playlists.length; i++) {
-				if (emails[i].body.toLowerCase().includes(query.toLowerCase())) {
-					//TODO sender
-					//let recipient = emails[i].recipient;
-					let subject = emails[i].subject;
-					let stato = emails[i].stato;
-
-					//TODO add tasto per aprire singola email
-					tbody.innerHTML += sender + '</td><td>' + subject + '</td><td>' + stato + '</td><tr>';
-				}
-			}
-		}
-	}
-
-	var myInput = document.getElementById('searchMail');
-
-	myInput.onfocus = function () {
-		document.getElementById('resultMail').style.display = 'block';
-	};
-
-	myInput.onblur = function () {
-		document.getElementById('resultMail').style.display = 'none';
-	};
 
 	function addEmail() {
 		emails = window.localStorage.getItem('emails');
@@ -99,10 +67,8 @@
 	}*/
 </script>
 
+<TopNavbar />
 <Sidebar />
-
-<!--TODO Le mail potranno essere divise tra: “in arrivo”, “bozze”, “speciali” -->
-<div>in arrivo, speciali, bozze, eliminati</div>
 
 <div
 	id="successImport"
@@ -111,19 +77,6 @@
 	style="display: none;"
 >
 	<span class="block sm:inline">Email inviata con successo!</span>
-</div>
-
-<div class="container m-3">
-	<form>
-		<input
-			name="cerca"
-			id="cerca"
-			class="form-control"
-			type="text"
-			placeholder="cerca una mail.."
-			on:keyup={searchMail()}
-		/>
-	</form>
 </div>
 
 <div class="container m-3">
