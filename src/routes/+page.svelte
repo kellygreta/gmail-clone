@@ -1,25 +1,10 @@
 <script>
-	//TODO dividere la pagina in compnenti
-	//(navbar laterale, barra di ricerca, tabella delle email in arrivo, nuova email)
-
-	//TODO Le mail devono essere salvate, indipendentemente da refresh o stop dell’applicazione.
 	//TODO Le mail possono essere ordinabili per data, dalla più recente a quella più vecchia e viceversa
-
-	/*function addSuccess() {
-		var success = document.getElementById('successImport');
-		success.style.display = 'block';
-	}*/
 </script>
 
 <div />
-<!-- <div
-	id="successImport"
-	class="relative rounded border border-green-400 bg-green-100 px-4 py-3 text-green-700"
-	role="alert"
-	style="display: none;"
->
-	<span class="block sm:inline">Email inviata con successo!</span>
-</div> -->
+
+<!--TODO Le mail potranno essere divise tra: “in arrivo”, “bozze”, “speciali” -->
 
 <!-- <div class="container m-3">
 	<table class="table-auto">

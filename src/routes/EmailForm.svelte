@@ -1,9 +1,10 @@
 <script>
-	//TODO prendere i sender in modo casuale da https://jsonplaceholder.typicode.com/users
+	//TODO Le mail devono essere salvate, indipendentemente da refresh o stop dell’applicazione.
+
 	export let writeMail = false;
 
 	function addEmail() {
-		emails = window.localStorage.getItem('emails');
+		let emails = window.localStorage.getItem('emails');
 
 		if (emails === null) {
 			emails = [];
@@ -15,7 +16,8 @@
 		//var attachments = [];
 
 		var email = {
-			sender: getSender(),
+			//prendere utente sender con id casuale
+			sender: getSender(Math.floor(Math.random() * 10) + 1),
 			recipient: document.getElementById('recipient').value,
 			subject: document.getElementById('subject').value,
 			body: document.getElementById('email-body').value,
@@ -30,12 +32,11 @@
 		//TODO controllo validità email
 
 		emails.push(email);
-		addSuccess();
 
 		window.localStorage.setItem('emails', JSON.stringify(emails));
 	}
 
-	function getSender() {
+	function getSender(id) {
 		fetch('https://jsonplaceholder.typicode.com/users')
 			.then((response) => {
 				if (response.ok) {
@@ -44,9 +45,7 @@
 				throw new Error('Qualcosa è andato storto');
 			})
 			.then((json) => {
-				console.log(json);
-				//TODO prendere utente sender con id Math.floor(Math.random() * 10) + 1;
-				//TODO aggiungere sender al local storage (?)
+				//TODO prendere utente con ID passato come parametro
 			})
 			.catch((error) => console.log(error));
 	}

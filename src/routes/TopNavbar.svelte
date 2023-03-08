@@ -1,7 +1,6 @@
 <script>
 	export let isOpen = true;
 
-	//import { CloseSidebar } from './Sidebar.svelte';
 	/*function searchMail() {
 		var tbody = document.getElementById('resultMail');
 		tbody.innerHTML = '';
@@ -80,9 +79,5 @@
 		<img class="h-5  object-contain" src="/images/apps.png" alt="apps-icon" />
 	</a>
 </nav>
-
-<div class=" h-26 w-screen  bg-slate-100 ">
-	<!--TODO Le mail potranno essere divise tra: “in arrivo”, “bozze”, “speciali” -->
-</div>
 
 <style></style>

@@ -1,4 +1,7 @@
 <script>
+	//TODO dividere la pagina in compnenti
+	//(navbar laterale, barra di ricerca, tabella delle email in arrivo, nuova email)
+
 	import '../app.postcss';
 	import Sidebar from './Sidebar.svelte';
 	import TopNavbar from './TopNavbar.svelte';
