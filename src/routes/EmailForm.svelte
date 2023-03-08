@@ -1,4 +1,5 @@
 <script>
+	let nodeRef;
 	/*
 function addEmail() {
 		emails = window.localStorage.getItem('emails');
@@ -37,7 +38,7 @@ function addEmail() {
     */
 </script>
 
-<div class="absolute right-20 bottom-0 h-80 w-80 rounded-md shadow-2xl">
+<div class="absolute right-20 bottom-0 h-80 w-80 rounded-md shadow-2xl" bind:this={nodeRef}>
 	<div class="h-10 flex-col rounded-md bg-slate-300 py-2 px-6 ">
 		<div class="flex items-center">
 			<div>
@@ -45,16 +46,22 @@ function addEmail() {
 			</div>
 			<div class="flex items-center space-x-3 px-7">
 				<a href="">
-					<div class="flex items-center space-x-1 rounded-full hover:bg-slate-200" />
-					<img class="h-5  object-contain" src="/images/reduce.png" alt="reduce-icon" />
+					<div class="flex items-center space-x-1  hover:bg-slate-200">
+						<img class="h-5  object-contain" src="/images/reduce.png" alt="reduce-icon" />
+					</div>
 				</a>
 				<a href="">
-					<div class="flex items-center space-x-1 rounded-full hover:bg-slate-200" />
-					<img class="h-5  object-contain" src="/images/full.png" alt="full-icon" />
+					<div class="flex items-center space-x-1  hover:bg-slate-200">
+						<img class="h-5  object-contain" src="/images/full.png" alt="full-icon" />
+					</div>
 				</a>
 				<a href="">
-					<div class="flex items-center space-x-1 rounded-full hover:bg-slate-200" />
-					<img class="h-5  object-contain" src="/images/close.png" alt="close-icon" />
+					<div
+						class="flex items-center space-x-1  hover:bg-slate-200"
+						on:click={() => nodeRef.parentNode.removeChild(nodeRef)}
+					>
+						<img class="h-5  object-contain" src="/images/close.png" alt="close-icon" />
+					</div>
 				</a>
 			</div>
 		</div>
