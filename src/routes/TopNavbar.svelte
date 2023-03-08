@@ -48,9 +48,9 @@
 		</div>
 	</div>
 	<div>
-		<div class="flex items-center space-x-1">
+		<div class="flex items-center space-x-1 rounded-md bg-slate-200">
 			<input
-				class=" rounded-md bg-slate-200 focus:bg-white"
+				class=" w-full rounded-md bg-slate-200 focus:bg-white"
 				name="cerca"
 				id="cerca"
 				type="text"

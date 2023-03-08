@@ -37,56 +37,76 @@ function addEmail() {
     */
 </script>
 
-<div class="relative h-32 w-32 bg-slate-200">
-	<div class="absolute bottom-0 right-0 h-16 w-16 bg-slate-300">
-		<form
-			on:submit={() => {
-				addEmail();
-			}}
-		>
-			<div class="m-3 grid-cols-1">
-				A <input
-					name="recipient"
-					id="recipient"
-					class="form-control"
-					type="text"
-					placeholder="Destinatario"
-					value=""
-				/>
+<div class="absolute right-20 bottom-0 h-80 w-80 rounded-md shadow-2xl">
+	<div class="h-10 flex-col rounded-md bg-slate-300 py-2 px-6 ">
+		<div class="flex items-center">
+			<div>
+				<p>Nuovo messaggio</p>
 			</div>
-
-			<!-- TODO add CC -->
-
-			<div class="m-3 grid-cols-1">
-				<input
-					name="subject"
-					id="subject"
-					class="form-control"
-					type="text"
-					placeholder="Oggetto"
-					value=""
-				/>
+			<div class="flex items-center space-x-3 px-7">
+				<a href="">
+					<div class="flex items-center space-x-1 rounded-full hover:bg-slate-200" />
+					<img class="h-5  object-contain" src="/images/reduce.png" alt="reduce-icon" />
+				</a>
+				<a href="">
+					<div class="flex items-center space-x-1 rounded-full hover:bg-slate-200" />
+					<img class="h-5  object-contain" src="/images/full.png" alt="full-icon" />
+				</a>
+				<a href="">
+					<div class="flex items-center space-x-1 rounded-full hover:bg-slate-200" />
+					<img class="h-5  object-contain" src="/images/close.png" alt="close-icon" />
+				</a>
 			</div>
-
-			<div class="m-3 grid-cols-1">
-				<input
-					name="email-body"
-					id="email-body"
-					class="form-control"
-					type="text"
-					placeholder="Scrivi..."
-					value=""
-				/>
-			</div>
-
-			<!-- TODO add allegati, caricabili sia con il classico selettore di file che con un sistema di drag and drop  -->
-			<div class="m-3 grid-cols-1">
-				<button class="rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700">
-					Invia
-				</button>
-			</div>
-		</form>
+		</div>
 	</div>
+	<form
+		on:submit={() => {
+			addEmail();
+		}}
+	>
+		<div class="m-3 grid-cols-1">
+			A <input
+				name="recipient"
+				id="recipient"
+				class="form-control"
+				type="text"
+				placeholder="Destinatari"
+				value=""
+			/>
+		</div>
+
+		<!-- TODO add CC -->
+
+		<div class="m-3 grid-cols-1">
+			<input
+				name="subject"
+				id="subject"
+				class="form-control"
+				type="text"
+				placeholder="Oggetto"
+				value=""
+			/>
+		</div>
+
+		<div class="m-3 h-32 grid-cols-1">
+			<input
+				name="email-body"
+				id="email-body"
+				class="form-control h-32 w-60"
+				type="text"
+				placeholder="Scrivi..."
+				value=""
+			/>
+		</div>
+
+		<!-- TODO add allegati, caricabili sia con il classico selettore di file che con un sistema di drag and drop  -->
+
+		<div class="m-3 grid-cols-1">
+			<button class="rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700">
+				Invia
+			</button>
+		</div>
+	</form>
 </div>
 
 <style>
