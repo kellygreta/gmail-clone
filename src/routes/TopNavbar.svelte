@@ -1,4 +1,7 @@
 <script>
+	export let isOpen = true;
+
+	//import { CloseSidebar } from './Sidebar.svelte';
 	/*function searchMail() {
 		var tbody = document.getElementById('resultMail');
 		tbody.innerHTML = '';
@@ -37,7 +40,12 @@
 	class="flex w-full flex-col bg-slate-100 py-2 px-6 text-center  shadow sm:flex-row sm:items-baseline sm:justify-between sm:text-left"
 >
 	<div class="mb-2">
-		<div class="flex items-center space-x-4">
+		<div
+			class="flex items-center space-x-4"
+			on:click={() => {
+				isOpen = !isOpen;
+			}}
+		>
 			<div class="space-y-1">
 				<div class="h-0.5 w-6 bg-gray-600" />
 				<div class="h-0.5 w-6 bg-gray-600" />
