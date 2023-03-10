@@ -15,7 +15,7 @@ export const actions = {
 		//TODO da rivedere come allegare file
 		//var attachments = [];
 
-		var email = {
+		let email = {
 			//prendere utente sender con id casuale
 			sender: getSender(Math.floor(Math.random() * 10) + 1).email,
 			recipient: data.get('recipient'),
@@ -35,16 +35,33 @@ export const actions = {
 	}
 };
 
-//TODO corregere
-function getSender(id) {
-	fetch('https://jsonplaceholder.typicode.com/users')
-		.then((response) => {
-			if (!response.ok) {
-				throw new Error('Qualcosa è andato storto');
-			}
+async function getEmail() {
+	const data = await fetch('https://jsonplaceholder.typicode.com/posts');
+	return await data.json();
+}
+
+export async function load(params) {
+	//console.log(params, 'qui');
+	const mails = await getEmail();
+	Promise.all(
+		mails.map(async (mail) => {
+			const { name, email } = await getSender(mail.userId);
+			return {
+				user: { name, email, id: mail.userId },
+				title: mail.title,
+				body: mail.body,
+				idm: mail.id
+			};
 		})
-		.then((json) => {
-			return json.find((p) => p.id == id);
-		})
-		.catch((error) => console.log(error));
+	);
+	console.log(mails);
+
+	return {
+		post: {}
+	};
+}
+
+async function getSender(id) {
+	const data = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`);
+	return await data.json();
 }
