@@ -2,20 +2,15 @@
 	//TODO Le mail possono essere ordinabili per data, dalla più recente a quella più vecchia e viceversa
 	/** @type {import('./$types').PageData} */
 	export let data;
-	console.log('data', data);
+	$: console.log('data', data);
+
+	import EmailItem from './EmailItem.svelte';
 </script>
 
-<ul>
-	{#each data.mail as info}
-		<li />
-		<li />
-		<li>
-			{info.user.email}
-		</li>
-		<li>
-			{info.title}
-		</li>
+<div>
+	{#each data.infos as info}
+		<EmailItem propSender="{info.user.email}," propSubject{info.title} />
 	{/each}
-</ul>
+</div>
 
 <style></style>

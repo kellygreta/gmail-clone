@@ -41,19 +41,20 @@ async function getEmail() {
 export async function load(params) {
 	//console.log('params', params);
 	const mails = await getEmail();
-	await Promise.all(
+	const infos = await Promise.all(
 		mails.map(async (mail) => {
 			const { name, email } = await getSender(mail.userId);
 			return {
-				mail: {
-					user: { name, email, id: mail.userId },
-					title: mail.title,
-					body: mail.body,
-					idm: mail.id
-				}
+				user: { name, email, id: mail.userId },
+				title: mail.title,
+				body: mail.body,
+				idm: mail.id
 			};
 		})
 	);
+	return {
+		infos
+	};
 }
 
 console.log(load());

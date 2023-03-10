@@ -3,7 +3,6 @@
 	import Sidebar from './Sidebar.svelte';
 	import TopNavbar from './TopNavbar.svelte';
 	import EmailForm from './EmailForm.svelte';
-	import EmailInbox from './EmailInbox.svelte';
 
 	let isOpen = true;
 	let writeMail = false;
@@ -11,6 +10,5 @@
 
 <TopNavbar bind:isOpen />
 <Sidebar bind:isOpen bind:writeMail />
-<EmailInbox />
 <EmailForm bind:writeMail />
 <slot />
