@@ -4,7 +4,7 @@
 </script>
 
 {#if writeMail}
-	<div class="absolute right-20 bottom-0 h-80 w-80 rounded-md shadow-2xl">
+	<div class="z-2 h-90 absolute right-20 bottom-0 w-80 rounded-md bg-white shadow-2xl">
 		<div class="h-10 flex-col rounded-md bg-slate-300 py-2 px-6 ">
 			<div class="flex items-center">
 				<div>
@@ -66,6 +66,17 @@
 					class="form-control h-32 w-60"
 					type="text"
 					placeholder="Scrivi..."
+					value=""
+				/>
+			</div>
+
+			<div class="m-3 grid-cols-1">
+				<input
+					name="attachments"
+					id="attachments"
+					class="form-control"
+					type="file"
+					placeholder="Attachments..."
 					value=""
 				/>
 			</div>

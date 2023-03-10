@@ -8,7 +8,7 @@
 	let writeMail = false;
 </script>
 
+<EmailForm bind:writeMail />
 <TopNavbar bind:isOpen />
 <Sidebar bind:isOpen bind:writeMail />
-<EmailForm bind:writeMail />
 <slot />
