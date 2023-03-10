@@ -55,29 +55,35 @@
 		</div>
 	</div>
 	<div>
-		<div class="flex items-center space-x-1 rounded-md bg-slate-200">
+		<div
+			class="relative mb-3 flex w-full flex-wrap items-stretch space-x-1 rounded-md bg-slate-200"
+		>
 			<input
-				class=" w-full rounded-md bg-slate-200 focus:bg-white"
+				class=" w-full rounded border-0 bg-slate-200 px-3 py-4 pl-80 text-left text-black placeholder-slate-500 shadow  focus:bg-white focus:outline-none "
 				name="cerca"
 				id="cerca"
 				type="text"
 				placeholder="Cerca nella Posta"
 			/>
-			<img class="h-5  object-contain" src="/images/cerca.png" alt="search-logo" />
+			<span class=" absolute h-full items-center justify-center rounded bg-transparent py-5 pl-3 ">
+				<img class="h-5  " src="/images/cerca.png" alt="search-logo" />
+			</span>
 		</div>
 	</div>
-	<a href="">
-		<div class="flex items-center space-x-1 rounded-full hover:bg-slate-200" />
-		<img class="h-5  object-contain" src="/images/help.png" alt="help-icon" />
-	</a>
-	<a href="">
-		<div class="flex items-center space-x-1 rounded-full hover:bg-slate-200" />
-		<img class="h-5  object-contain" src="/images/settings.png" alt="settings-icon" />
-	</a>
-	<a href="">
-		<div class="flex items-center space-x-1 rounded-full hover:bg-slate-300" />
-		<img class="h-5  object-contain" src="/images/apps.png" alt="apps-icon" />
-	</a>
+	<div class="flex items-center space-x-3 px-3">
+		<a href="">
+			<div class="flex items-center space-x-1 rounded-full hover:bg-slate-200" />
+			<img class="h-5  object-contain" src="/images/help.png" alt="help-icon" />
+		</a>
+		<a href="">
+			<div class="flex items-center space-x-1 rounded-full hover:bg-slate-200" />
+			<img class="h-5  object-contain" src="/images/settings.png" alt="settings-icon" />
+		</a>
+		<a href="">
+			<div class="flex items-center space-x-1 rounded-full hover:bg-slate-300" />
+			<img class="h-5  object-contain" src="/images/apps.png" alt="apps-icon" />
+		</a>
+	</div>
 </nav>
 
 <style></style>

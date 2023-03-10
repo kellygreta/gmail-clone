@@ -27,7 +27,7 @@
 			{/if}
 		</div>
 	</a>
-	<a href="">
+	<a href="/special">
 		<div class="flex items-center space-x-4 rounded-full  px-6 pt-3 hover:bg-gray-200">
 			<img class="h-5  object-contain" src="/images/speciali.png" alt="special-icon" />
 			{#if isOpen}

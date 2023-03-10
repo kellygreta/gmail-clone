@@ -8,11 +8,17 @@
 </script>
 
 <!-- absolute left-80 top-20  -->
-<div class="z-1 rounded-md">
-	<div class="grid grid-cols-4 gap-4 border-b-2 border-gray-200">
-		<div><img class="h-5  object-contain" src="/images/check_box.png" alt="check_box" /></div>
-		<div><img class="h-5  object-contain" src="/images/refresh.png" alt="refresh-icon" /></div>
-		<div><img class="h-5  object-contain" src="/images/more_vert.png" alt="more_vert-icon" /></div>
+<div class="z-1 absolute  top-24 left-80 rounded-md">
+	<div class="flex border-b-2 border-gray-200">
+		<div class="h-14 w-14 flex-none">
+			<img class="h-5  object-contain" src="/images/check_box.png" alt="check_box" />
+		</div>
+		<div class="h-14 w-14 flex-initial">
+			<img class="h-5  object-contain" src="/images/refresh.png" alt="refresh-icon" />
+		</div>
+		<div class="h-14 w-14 flex-initial">
+			<img class="h-5  object-contain" src="/images/more_vert.png" alt="more_vert-icon" />
+		</div>
 	</div>
 
 	{#each data.infos as info}

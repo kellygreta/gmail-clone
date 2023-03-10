@@ -13,7 +13,7 @@ export const actions = {
 
 		let email = {
 			//prendere utente sender con id casuale
-			sender: await getSender(Math.floor(Math.random() * 10) + 1).email,
+			//sender: await getSender(Math.floor(Math.random() * 10) + 1).email,
 			recipient: data.get('recipient'),
 			subject: data.get('subject'),
 			body: data.get('email-body'),
