@@ -27,8 +27,6 @@ export const actions = {
 			//attachments:
 		};
 
-		//TODO controllo validità email
-
 		emails.push(email);
 
 		window.localStorage.setItem('emails', JSON.stringify(emails));
@@ -43,7 +41,7 @@ async function getEmail() {
 export async function load(params) {
 	//console.log(params, 'qui');
 	const mails = await getEmail();
-	Promise.all(
+	const mail = await Promise.all(
 		mails.map(async (mail) => {
 			const { name, email } = await getSender(mail.userId);
 			return {
@@ -54,11 +52,7 @@ export async function load(params) {
 			};
 		})
 	);
-	console.log(mails);
-
-	return {
-		post: {}
-	};
+	//console.log(mail);
 }
 
 async function getSender(id) {
