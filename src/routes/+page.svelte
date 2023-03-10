@@ -1,21 +1,21 @@
 <script>
 	//TODO Le mail possono essere ordinabili per data, dalla più recente a quella più vecchia e viceversa
+	/** @type {import('./$types').PageData["mail"]} */
+	export let data;
 </script>
 
 <!--TODO modifcare usando flexbox NON table  -->
-<div class="container m-3">
-	<table class="table-auto">
-		<thead>
-			<tr>
-				<th />
-				<th />
-				<th>Mittente</th>
-				<th>Oggetto</th>
-				<th>data</th>
-			</tr>
-		</thead>
-		<tbody id="resultMail" />
-	</table>
-</div>
+<ul>
+	{#each data.mails as mail}
+		<li />
+		<li />
+		<li>
+			{mail.user.email}
+		</li>
+		<li>
+			{mail.title}
+		</li>
+	{/each}
+</ul>
 
 <style></style>

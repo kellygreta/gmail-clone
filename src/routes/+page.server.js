@@ -1,5 +1,4 @@
 /** @type {import('./$types').Actions} */
-
 export const actions = {
 	sendEmail: async (request) => {
 		const emails = window.localStorage.getItem('emails');
@@ -38,6 +37,7 @@ async function getEmail() {
 	return await data.json();
 }
 
+/** @type {import('./$types').PageServerLoad} */
 export async function load(params) {
 	//console.log(params, 'qui');
 	const mails = await getEmail();

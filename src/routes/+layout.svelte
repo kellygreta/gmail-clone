@@ -7,6 +7,9 @@
 
 	let isOpen = true;
 	let writeMail = false;
+
+	/** @type {import('./$types').PageData["mail"]} */
+	export let data;
 </script>
 
 <TopNavbar bind:isOpen />
