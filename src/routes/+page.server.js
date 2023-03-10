@@ -39,21 +39,24 @@ async function getEmail() {
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load(params) {
-	//console.log(params, 'qui');
+	//console.log('params', params);
 	const mails = await getEmail();
-	const mail = await Promise.all(
+	await Promise.all(
 		mails.map(async (mail) => {
 			const { name, email } = await getSender(mail.userId);
 			return {
-				user: { name, email, id: mail.userId },
-				title: mail.title,
-				body: mail.body,
-				idm: mail.id
+				mail: {
+					user: { name, email, id: mail.userId },
+					title: mail.title,
+					body: mail.body,
+					idm: mail.id
+				}
 			};
 		})
 	);
-	//console.log(mail);
 }
+
+console.log(load());
 
 async function getSender(id) {
 	const data = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`);
