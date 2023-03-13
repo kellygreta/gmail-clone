@@ -1,33 +1,3 @@
-/** @type {import('./$types').Actions} */
-export const actions = {
-	sendEmail: async (request) => {
-		const emails = window.localStorage.getItem('emails');
-
-		if (emails === null) {
-			emails = [];
-		} else {
-			emails = JSON.parse(emails);
-		}
-
-		const data = await request.formData();
-
-		let email = {
-			//prendere utente sender con id casuale
-			//sender: await getSender(Math.floor(Math.random() * 10) + 1).email,
-			recipient: data.get('recipient'),
-			subject: data.get('subject'),
-			body: data.get('email-body'),
-			attachments: data.get('attachments'),
-			special: false,
-			deleted: false
-		};
-
-		emails.push(email);
-
-		window.localStorage.setItem('emails', JSON.stringify(emails));
-	}
-};
-
 async function getEmail() {
 	const data = await fetch('https://jsonplaceholder.typicode.com/posts');
 	return await data.json();

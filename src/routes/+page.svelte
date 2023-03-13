@@ -7,8 +7,7 @@
 	import EmailItem from './EmailItem.svelte';
 </script>
 
-<!-- absolute left-80 top-20  -->
-<div class="z-1 absolute  top-24 left-80 rounded-md">
+<div class="z-1 absolute left-72 top-24 w-full rounded-md">
 	<div class="flex border-b-2 border-gray-200">
 		<div class="h-14 w-14 flex-none">
 			<img class="h-5  object-contain" src="/images/check_box.png" alt="check_box" />

@@ -1,10 +1,39 @@
 <script>
 	//TODO Le mail devono essere salvate, indipendentemente da refresh o stop dell’applicazione.
 	export let writeMail = false;
+	let recipient = '';
+	let subject = '';
+	let emailBody = '';
+	let files;
+
+	function sendEmail() {
+		let emails = window.localStorage.getItem('emails');
+
+		if (emails === null) {
+			emails = [];
+		} else {
+			emails = JSON.parse(emails);
+		}
+
+		let email = {
+			//prendere utente sender con id casuale
+			//sender: await getSender(Math.floor(Math.random() * 10) + 1).email,
+			recipient: recipient,
+			subject: subject,
+			body: emailBody,
+			attachments: files,
+			special: false,
+			deleted: false
+		};
+
+		emails.push(email);
+
+		window.localStorage.setItem('emails', JSON.stringify(emails));
+	}
 </script>
 
 {#if writeMail}
-	<div class="z-2 h-90 absolute right-20 bottom-0 w-80 rounded-md bg-white shadow-2xl">
+	<div class="h-90 absolute right-20 bottom-0 z-10 w-80 rounded-md bg-white shadow-2xl">
 		<div class="h-10 flex-col rounded-md bg-slate-300 py-2 px-6 ">
 			<div class="flex items-center">
 				<div>
@@ -34,15 +63,15 @@
 				</div>
 			</div>
 		</div>
-		<form method="POST">
+		<form>
 			<div class="m-3 grid-cols-1">
 				A <input
+					bind:value={recipient}
 					name="recipient"
 					id="recipient"
 					class="form-control"
 					type="email"
 					placeholder="Destinatari"
-					value=""
 				/>
 			</div>
 
@@ -50,34 +79,34 @@
 
 			<div class="m-3 grid-cols-1">
 				<input
+					bind:value={subject}
 					name="subject"
 					id="subject"
 					class="form-control"
 					type="text"
 					placeholder="Oggetto"
-					value=""
 				/>
 			</div>
 
 			<div class="m-3 h-32 grid-cols-1">
 				<input
+					bind:value={emailBody}
 					name="email-body"
 					id="email-body"
 					class="form-control h-32 w-60"
 					type="text"
 					placeholder="Scrivi..."
-					value=""
 				/>
 			</div>
-
 			<div class="m-3 grid-cols-1">
 				<input
+					bind:files
 					name="attachments"
 					id="attachments"
 					class="form-control"
+					multiple
 					type="file"
 					placeholder="Attachments..."
-					value=""
 				/>
 			</div>
 
@@ -86,7 +115,9 @@
 			<div class="m-3 grid-cols-1">
 				<button
 					class="rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700"
-					formaction="?/sendEmail"
+					on:click={() => {
+						sendEmail();
+					}}
 				>
 					Invia
 				</button>

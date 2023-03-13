@@ -11,7 +11,7 @@
 		<img class="h-5  object-contain" src="/images/speciali.png" alt="special-icon" />
 	</div>
 	<div class="h-14 w-80 flex-none">{propSender}</div>
-	<div class="h-14  flex-none">{propSubject}</div>
+	<div class="h-14 w-full flex-none">{propSubject}</div>
 </div>
 
 <style></style>
