@@ -14,7 +14,9 @@ export async function load(params) {
 				user: { name, email, id: mail.userId },
 				title: mail.title,
 				body: mail.body,
-				idm: mail.id
+				idm: mail.id,
+				special: false,
+				deleted: false
 			};
 		})
 	);

@@ -1,10 +1,11 @@
 <script>
 	//TODO Le mail devono essere salvate, indipendentemente da refresh o stop dell’applicazione.
 	export let writeMail = false;
-	let recipient = '';
+	let recipient = [];
 	let subject = '';
 	let emailBody = '';
 	let files;
+	let count = 200;
 
 	function sendEmail() {
 		let emails = window.localStorage.getItem('emails');
@@ -23,7 +24,8 @@
 			body: emailBody,
 			attachments: files,
 			special: false,
-			deleted: false
+			deleted: false,
+			id: count++
 		};
 
 		emails.push(email);
@@ -40,12 +42,12 @@
 					<p>Nuovo messaggio</p>
 				</div>
 				<div class="flex items-center space-x-3 px-7">
-					<a href="">
+					<a href="/">
 						<div class="flex items-center space-x-1  hover:bg-slate-200">
 							<img class="h-5  object-contain" src="/images/reduce.png" alt="reduce-icon" />
 						</div>
 					</a>
-					<a href="">
+					<a href="/">
 						<div class="flex items-center space-x-1  hover:bg-slate-200">
 							<img class="h-5  object-contain" src="/images/full.png" alt="full-icon" />
 						</div>
@@ -70,6 +72,7 @@
 					name="recipient"
 					id="recipient"
 					class="form-control"
+					multiple
 					type="email"
 					placeholder="Destinatari"
 				/>

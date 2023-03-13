@@ -35,51 +35,47 @@
 	};*/
 </script>
 
-<nav
-	class="flex w-full flex-col bg-slate-100 py-2 px-6 text-center  shadow sm:flex-row sm:items-baseline sm:justify-between sm:text-left"
->
-	<div class="mb-2">
-		<div
-			class="flex items-center space-x-4"
-			on:click={() => {
-				isOpen = !isOpen;
-			}}
-		>
-			<div class="space-y-1">
+<nav class=" flex w-full bg-slate-100 shadow sm:items-center sm:justify-between sm:text-left">
+	<div class="">
+		<div class="flex items-center space-x-3 pl-3">
+			<div
+				class="space-y-1"
+				on:click={() => {
+					isOpen = !isOpen;
+				}}
+			>
 				<div class="h-0.5 w-6 bg-gray-600" />
 				<div class="h-0.5 w-6 bg-gray-600" />
 				<div class="h-0.5 w-6 bg-gray-600" />
 			</div>
-			<img class="h-10  object-contain" src="/images/Gmail-logo.png" alt="Gmail-logo" />
-			<a href="">Gmail</a>
+			<img class="h-10 object-contain" src="/images/Gmail-logo.png" alt="Gmail-logo" />
+			<a href="/">Gmail</a>
 		</div>
 	</div>
 	<div>
-		<div
-			class="relative mb-3 flex w-full flex-wrap items-stretch space-x-1 rounded-md bg-slate-200"
-		>
+		<div class="mt-3 mb-3 flex w-full space-x-1 rounded-md bg-slate-200">
+			<span class="py-5">
+				<img class="h-5" src="/images/cerca.png" alt="search-logo" />
+			</span>
 			<input
-				class=" w-full rounded border-0 bg-slate-200 px-3 py-4 pl-80 text-left text-black placeholder-slate-500 shadow  focus:bg-white focus:outline-none "
+				class="rounded-md bg-slate-200  pl-3 text-black placeholder-slate-500 outline-none focus:bg-white"
 				name="cerca"
 				id="cerca"
 				type="text"
 				placeholder="Cerca nella Posta"
 			/>
-			<span class=" absolute h-full items-center justify-center rounded bg-transparent py-5 pl-3 ">
-				<img class="h-5  " src="/images/cerca.png" alt="search-logo" />
-			</span>
 		</div>
 	</div>
-	<div class="flex items-center space-x-3 px-3">
-		<a href="">
+	<div class="flex items-center space-x-10 px-3">
+		<a href="/">
 			<div class="flex items-center space-x-1 rounded-full hover:bg-slate-200" />
 			<img class="h-5  object-contain" src="/images/help.png" alt="help-icon" />
 		</a>
-		<a href="">
+		<a href="/">
 			<div class="flex items-center space-x-1 rounded-full hover:bg-slate-200" />
 			<img class="h-5  object-contain" src="/images/settings.png" alt="settings-icon" />
 		</a>
-		<a href="">
+		<a href="/">
 			<div class="flex items-center space-x-1 rounded-full hover:bg-slate-300" />
 			<img class="h-5  object-contain" src="/images/apps.png" alt="apps-icon" />
 		</a>

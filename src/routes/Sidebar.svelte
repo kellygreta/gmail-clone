@@ -19,7 +19,7 @@
 			{/if}
 		</button>
 	</div>
-	<a href="">
+	<a href="/">
 		<div class="flex items-center space-x-4 rounded-full px-6 pt-3 hover:bg-gray-200">
 			<img class="h-5  object-contain" src="/images/incoming.png" alt="incoming-icon" />
 			{#if isOpen}
@@ -27,15 +27,15 @@
 			{/if}
 		</div>
 	</a>
-	<a href="/special">
+	<a href="special">
 		<div class="flex items-center space-x-4 rounded-full  px-6 pt-3 hover:bg-gray-200">
-			<img class="h-5  object-contain" src="/images/speciali.png" alt="special-icon" />
+			<img class="h-5  object-contain" src="/images/notSpecial.png" alt="notSpecial-icon" />
 			{#if isOpen}
 				<p>Speciali</p>
 			{/if}
 		</div>
 	</a>
-	<a href="">
+	<a href="/">
 		<div class="flex items-center space-x-4  rounded-full  px-6 pt-3 hover:bg-gray-200">
 			<img class="h-5  object-contain" src="/images/posticipati.png" alt="postponed-icon" />
 			{#if isOpen}
@@ -43,7 +43,7 @@
 			{/if}
 		</div>
 	</a>
-	<a href="">
+	<a href="/">
 		<div class="flex items-center space-x-4 rounded-full px-6  pt-3  hover:bg-gray-200">
 			<img class="h-5  object-contain" src="/images/importanti.png" alt="important-icon" />
 			{#if isOpen}
@@ -51,7 +51,7 @@
 			{/if}
 		</div>
 	</a>
-	<a href="">
+	<a href="/sent">
 		<div class="flex items-center space-x-4 rounded-full px-6  pt-3  hover:bg-gray-200">
 			<img class="h-5  object-contain" src="/images/inviati.png" alt="sent-icon" />
 			{#if isOpen}
@@ -59,7 +59,7 @@
 			{/if}
 		</div>
 	</a>
-	<a href="">
+	<a href="/">
 		<div class="flex items-center space-x-4 rounded-full px-6  pt-3  hover:bg-gray-200">
 			<img class="h-5  object-contain" src="/images/draft.png" alt="draft-icon" />
 			{#if isOpen}

@@ -1,10 +1,8 @@
 <script>
-	//TODO Le mail possono essere ordinabili per data, dalla più recente a quella più vecchia e viceversa
-	/** @type {import('./$types').PageData} */
 	export let data;
 	//$: console.log('data', data);
 
-	import EmailItem from './EmailItem.svelte';
+	import EmailItem from '../EmailItem.svelte';
 </script>
 
 <div class="z-1 absolute left-72 top-24 w-full rounded-md">
@@ -19,15 +17,9 @@
 			<img class="h-5  object-contain" src="/images/more_vert.png" alt="more_vert-icon" />
 		</div>
 	</div>
-
 	{#each data.infos as info}
-		{#if !info.deleted}
-			<EmailItem
-				propSender="{info.user.email},"
-				propSubject="{info.title},"
-				propSpecial="{info.special},"
-				propID={info.idm}
-			/>
+		{#if !info.deleted && info.special}
+			<EmailItem propSender="{info.user.email}," propSubject="{info.title}," propID={info.idm} />
 		{/if}
 	{/each}
 </div>
