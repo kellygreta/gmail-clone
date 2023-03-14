@@ -60,13 +60,8 @@
 	</div>
 	<div class="h-14 w-80 flex-none">{propSender}</div>
 	<div class="h-14 w-2/5 flex-none">{propSubject}</div>
-	<div class="delete h-14 w-14 flex-none">
-		<img
-			class="h-5  object-contain"
-			src="/images/delete.png"
-			alt="delete-icon"
-			on:click={() => deleteEmail(propID)}
-		/>
+	<div class="delete h-14 w-14 flex-none bg-slate-600" on:click={() => deleteEmail(propID)}>
+		<img class="h-5  object-contain" src="/images/delete.png" alt="delete-icon" />
 	</div>
 </div>
 

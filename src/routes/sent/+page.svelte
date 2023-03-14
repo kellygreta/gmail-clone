@@ -29,7 +29,12 @@
 		</div>
 	</div>
 	{#each emails as mail}
-		<EmailItem propSender="TBD" , propSubject="{mail.subject}," propID={mail.id} />
+		<EmailItem
+			propSender={mail.sender}
+			propSubject={mail.subject}
+			propSpecial={mail.special}
+			propID={mail.id}
+		/>
 	{/each}
 </div>
 

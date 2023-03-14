@@ -7,7 +7,12 @@
 	let files;
 	let count = 200;
 
-	function sendEmail() {
+	async function getSender(id) {
+		const data = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`);
+		return await data.json();
+	}
+
+	async function sendEmail() {
 		let emails = window.localStorage.getItem('emails');
 
 		if (emails === null) {
@@ -17,8 +22,8 @@
 		}
 
 		let email = {
-			//prendere utente sender con id casuale
-			//sender: await getSender(Math.floor(Math.random() * 10) + 1).email,
+			//TODO sender not working
+			sender: await getSender(Math.floor(Math.random() * 10) + 1).email,
 			recipient: recipient,
 			subject: subject,
 			body: emailBody,

@@ -71,10 +71,10 @@
 </div>
 
 <style>
-	/* .delete {
+	.delete {
 		display: none;
 	}
 	.emailRow:hover + .delete {
 		display: block;
-	} */
+	}
 </style>
