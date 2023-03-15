@@ -1,16 +1,13 @@
 <script>
 	export let isOpen = true;
+	let query = '';
 
-	/*function searchMail() {
-		var tbody = document.getElementById('resultMail');
-		tbody.innerHTML = '';
-
+	function searchMail() {
 		var emails = window.localStorage.getItem('emails');
-		var query = document.getElementById('cerca').value;
 
 		if (query.length > 1 && emails != null) {
 			emails = JSON.parse(emails);
-			for (var i = 0; i < playlists.length; i++) {
+			for (var i = 0; i < emails.length; i++) {
 				if (emails[i].body.toLowerCase().includes(query.toLowerCase())) {
 					//TODO sender
 					//let recipient = emails[i].recipient;
@@ -18,15 +15,12 @@
 					let stato = emails[i].stato;
 
 					//TODO add tasto per aprire singola email
-					tbody.innerHTML += sender + '</td><td>' + subject + '</td><td>' + stato + '</td><tr>';
 				}
 			}
 		}
 	}
 
-	var myInput = document.getElementById('searchMail');
-
-	myInput.onfocus = function () {
+	/*myInput:onfocus = function () {
 		document.getElementById('resultMail').style.display = 'block';
 	};
 
@@ -58,6 +52,7 @@
 				<img class="h-5" src="/images/cerca.png" alt="search-logo" />
 			</span>
 			<input
+				bind:value={query}
 				class="rounded-md bg-slate-200  pl-3 text-black placeholder-slate-500 outline-none focus:bg-white"
 				name="cerca"
 				id="cerca"

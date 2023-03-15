@@ -47,7 +47,7 @@
 	}
 </script>
 
-<div class="emailRow flex border-b-2 border-gray-200 hover:shadow-xl">
+<div class="group flex border-b-2 border-gray-200 hover:shadow-xl">
 	<div class="h-14 w-14 flex-none">
 		<img class="h-5  object-contain" src="/images/check_box.png" alt="check_box" />
 	</div>
@@ -60,7 +60,7 @@
 	</div>
 	<div class="h-14 w-80 flex-none">{propSender}</div>
 	<div class="h-14 w-2/5 flex-none">{propSubject}</div>
-	<div class="delete h-14 w-14 flex-none">
+	<div class="none h-14 w-14 flex-none group-hover:block">
 		<img
 			class="h-5  object-contain"
 			src="/images/delete.png"
@@ -71,10 +71,4 @@
 </div>
 
 <style>
-	.delete {
-		display: none;
-	}
-	.emailRow:hover + .delete {
-		display: block;
-	}
 </style>

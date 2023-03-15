@@ -5,7 +5,6 @@
 	export let propID;
 	//export let data;
 
-	//TODO not working
 	function updateSpecial(id) {
 		let emails = window.localStorage.getItem('emails');
 
@@ -15,17 +14,14 @@
 			emails = JSON.parse(emails);
 		}
 
-		let index = 0;
-		emails.forEach((email) => {
-			if (email.id == id) {
-				email.special = true;
-			}
-			index++;
-		});
+		const email = emails.find((email) => email.id == id);
+		if (email) {
+			email.special = !email.special;
+		}
+
 		window.localStorage.setItem('emails', JSON.stringify(emails));
 	}
 
-	//TODO not working
 	function deleteEmail(id) {
 		let emails = window.localStorage.getItem('emails');
 
@@ -47,7 +43,7 @@
 	}
 </script>
 
-<div class="emailRow flex border-b-2 border-gray-200 hover:shadow-xl">
+<div class=" flex border-b-2 border-gray-200 hover:shadow-xl">
 	<div class="h-14 w-14 flex-none">
 		<img class="h-5  object-contain" src="/images/check_box.png" alt="check_box" />
 	</div>
@@ -60,16 +56,10 @@
 	</div>
 	<div class="h-14 w-80 flex-none">{propSender}</div>
 	<div class="h-14 w-2/5 flex-none">{propSubject}</div>
-	<div class="delete h-14 w-14 flex-none bg-slate-600" on:click={() => deleteEmail(propID)}>
+	<div class=" h-14 w-14 flex-none bg-slate-600" on:click={() => deleteEmail(propID)}>
 		<img class="h-5  object-contain" src="/images/delete.png" alt="delete-icon" />
 	</div>
 </div>
 
 <style>
-	/* .delete {
-		display: none;
-	}
-	.emailRow:hover + .delete {
-		display: block;
-	} */
 </style>

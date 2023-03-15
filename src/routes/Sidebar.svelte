@@ -5,8 +5,8 @@
 
 <!-- TODO add funzionalità per “in arrivo”, “bozze”, “speciali” -->
 
-<div class="h-screen w-64 rounded-md bg-slate-100">
-	<div class="flex items-center space-x-4 px-6 pl-6 pt-3">
+<div class="flex h-screen w-fit max-w-[16rem] flex-col rounded-md bg-slate-100">
+	<div class="flex w-fit items-center space-x-4 px-6 pl-6 pt-3">
 		<button
 			class="flex items-center rounded-lg bg-blue-200 py-2 px-4 hover:shadow-xl"
 			on:click={() => {
@@ -20,7 +20,7 @@
 		</button>
 	</div>
 	<a href="/">
-		<div class="flex items-center space-x-4 rounded-full px-6 pt-3 hover:bg-gray-200">
+		<div class="flex w-fit items-center space-x-4 rounded-full px-6 pt-3 hover:bg-gray-200">
 			<img class="h-5  object-contain" src="/images/incoming.png" alt="incoming-icon" />
 			{#if isOpen}
 				<p>Posta in arrivo</p>
@@ -28,7 +28,7 @@
 		</div>
 	</a>
 	<a href="special">
-		<div class="flex items-center space-x-4 rounded-full  px-6 pt-3 hover:bg-gray-200">
+		<div class="flex w-fit items-center space-x-4 rounded-full  px-6 pt-3 hover:bg-gray-200">
 			<img class="h-5  object-contain" src="/images/notSpecial.png" alt="notSpecial-icon" />
 			{#if isOpen}
 				<p>Speciali</p>
@@ -36,7 +36,7 @@
 		</div>
 	</a>
 	<a href="/">
-		<div class="flex items-center space-x-4  rounded-full  px-6 pt-3 hover:bg-gray-200">
+		<div class="flex w-fit items-center space-x-4  rounded-full  px-6 pt-3 hover:bg-gray-200">
 			<img class="h-5  object-contain" src="/images/posticipati.png" alt="postponed-icon" />
 			{#if isOpen}
 				<p>Posticipati</p>
@@ -44,7 +44,7 @@
 		</div>
 	</a>
 	<a href="/">
-		<div class="flex items-center space-x-4 rounded-full px-6  pt-3  hover:bg-gray-200">
+		<div class="flex w-fit items-center space-x-4 rounded-full px-6  pt-3  hover:bg-gray-200">
 			<img class="h-5  object-contain" src="/images/importanti.png" alt="important-icon" />
 			{#if isOpen}
 				<p>Importanti</p>
@@ -52,7 +52,7 @@
 		</div>
 	</a>
 	<a href="/sent">
-		<div class="flex items-center space-x-4 rounded-full px-6  pt-3  hover:bg-gray-200">
+		<div class="flex w-fit items-center space-x-4 rounded-full px-6  pt-3  hover:bg-gray-200">
 			<img class="h-5  object-contain" src="/images/inviati.png" alt="sent-icon" />
 			{#if isOpen}
 				<p>Inviati</p>
@@ -60,7 +60,7 @@
 		</div>
 	</a>
 	<a href="/">
-		<div class="flex items-center space-x-4 rounded-full px-6  pt-3  hover:bg-gray-200">
+		<div class="flex w-fit items-center space-x-4 rounded-full px-6  pt-3  hover:bg-gray-200">
 			<img class="h-5  object-contain" src="/images/draft.png" alt="draft-icon" />
 			{#if isOpen}
 				<p>Bozze</p>

@@ -22,8 +22,7 @@
 		}
 
 		let email = {
-			//TODO sender not working
-			sender: await getSender(Math.floor(Math.random() * 10) + 1).email,
+			sender: 'gvigano@efebia.com',
 			recipient: recipient,
 			subject: subject,
 			body: emailBody,
