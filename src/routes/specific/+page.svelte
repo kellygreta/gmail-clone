@@ -1,9 +1,32 @@
 <script>
-	export let data;
-	//$: console.log('data', data);
-	//oltre el data si passa l'id (?)
-
 	import EmailItem from '../EmailItem.svelte';
+	var id = getParameter('url');
+	console.log(id);
+
+	function getParameter(parameter) {
+		var query = window.location.search;
+		var urlParams = new URLSearchParams(query);
+		return urlParams.get(parameter);
+	}
+
+	const email = emails.find((email) => email.id == id);
+
+	function updateSpecial() {
+		if (email) {
+			email.special = !email.special;
+		}
+
+		emails = emails;
+		window.localStorage.setItem('emails', JSON.stringify(emails));
+	}
+
+	function deleteEmail() {
+		const index = emails.indexOf(email);
+		emails.splice(index, 1);
+
+		emails = emails;
+		window.localStorage.setItem('emails', JSON.stringify(emails));
+	}
 </script>
 
 <div class="h-6 w-0.5 bg-gray-600" />
@@ -21,7 +44,12 @@
 			<img class="h-5  object-contain" src="/images/report.png" alt="report-icon" />
 		</div>
 		<!-- TODO eliminare email -->
-		<div class="h-14 w-14 flex-initial">
+		<div
+			class="h-14 w-14 flex-initial"
+			on:click={() => {
+				deleteEmail();
+			}}
+		>
 			<img class="h-5  object-contain" src="/images/delete.png" alt="delte-icon" />
 		</div>
 		<div class="h-14 w-14 flex-initial">
@@ -49,11 +77,13 @@
 			<img class="h-5  object-contain" src="/images/more_vert.png" alt="more_vert-icon" />
 		</div>
 	</div>
-	<!-- OGGETTO + stampa + open new window -->
-	<!-- SENDER + speciali + freccia + more_vert -->
-	<!-- BODY -->
-	<!-- rispondi + inoltra -->
-	<!-- <EmailItem propSender="{info.user.email}," propSubject="{info.title}," propID={info.idm} /> -->
+	<EmailItem
+		on:special={() => updateSpecial()}
+		propSender={mail.sender}
+		propSubject={mail.subject}
+		propSpecial={mail.special}
+		propBody={mail.body}
+	/>
 </div>
 
 <style></style>

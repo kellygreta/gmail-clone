@@ -49,24 +49,26 @@
 
 <div class="group flex border-b-2 border-gray-200 hover:shadow-xl">
 	<div class="h-14 w-14 flex-none">
-		<img class="h-5  object-contain" src="/images/check_box.png" alt="check_box" />
+		<h1>{propSubject}</h1>
+		<img class="h-5  object-contain" src="/images/more_vert.png" alt="more_vert-icon" />
+		<img class="h-5  object-contain" src="/images/more_vert.png" alt="more_vert-icon" />
 	</div>
-	<div class="h-14 w-14 flex-none" on:click={() => updateSpecial(propID)}>
+	<div class="h-14 w-14 flex-none">
+		<h2>{propSender}</h2>
 		{#if propSpecial}
 			<img class="h-5  object-contain" src="/images/special.png" alt="special-icon" />
 		{:else}
 			<img class="h-5  object-contain" src="/images/notSpecial.png" alt="notSpecial-icon" />
 		{/if}
+		<img class="h-5  object-contain" src="/images/more_vert.png" alt="more_vert-icon" />
+		<img class="h-5  object-contain" src="/images/more_vert.png" alt="more_vert-icon" />
 	</div>
-	<div class="h-14 w-80 flex-none">{propSender}</div>
-	<div class="h-14 w-2/5 flex-none">{propSubject}</div>
-	<div class="none h-14 w-14 flex-none group-hover:block">
-		<img
-			class="h-5  object-contain"
-			src="/images/delete.png"
-			alt="delete-icon"
-			on:click={() => deleteEmail(propID)}
-		/>
+	<div class="h-14 w-14 flex-none">
+		<p>{propBody}</p>
+	</div>
+	<div class="h-14 w-14 flex-none">
+		<button>rispondi</button>
+		<button>inoltra</button>
 	</div>
 </div>
 

@@ -5,6 +5,54 @@
 	//$: console.log('data', data);
 
 	import EmailItem from './EmailItem.svelte';
+
+	function getAPIEmailData() {
+		let emailsAPI = window.localStorage.getItem('emailsAPI');
+
+		if (emailsAPI === null) {
+			emailsAPI = [];
+		} else {
+			emailsAPI = JSON.parse(emailsAPI);
+		}
+
+		data.infos.forEach((info) => {
+			let email = {
+				sender: info.user.mail,
+				recipient: 'gvigano@efebia.com',
+				subject: info.title,
+				body: info.body,
+				special: false,
+				deleted: false,
+				id: info.idm
+			};
+			console.log(email);
+			emailsAPI.push(email);
+		});
+
+		window.localStorage.setItem('emailsAPI', JSON.stringify(emails));
+		return emailsAPI;
+	}
+
+	let emailsAPI = getAPIEmailData();
+
+	function updateSpecial(id) {
+		const email = emailsAPI.find((email) => email.id == id);
+		if (email) {
+			email.special = !email.special;
+		}
+
+		emailsAPI = emailsAPI;
+		window.localStorage.setItem('emailsAPI', JSON.stringify(emailsAPI));
+	}
+
+	function deleteEmail(id) {
+		const email = emailsAPI.find((email) => email.id == id);
+		const index = emailsAPI.indexOf(email);
+		emailsAPI.splice(index, 1);
+
+		emailsAPI = emailsAPI;
+		window.localStorage.setItem('emailsAPI', JSON.stringify(emailsAPI));
+	}
 </script>
 
 <div class="z-1 absolute left-48 top-24 w-4/5 rounded-md">
@@ -20,7 +68,7 @@
 		</div>
 	</div>
 
-	{#each data.infos as info}
+	<!-- {#each data.infos as info}
 		{#if !info.deleted}
 			<EmailItem
 				propSender="{info.user.email},"
@@ -29,6 +77,16 @@
 				propID={info.idm}
 			/>
 		{/if}
+	{/each} -->
+
+	{#each emailsAPI as mail}
+		<EmailItem
+			on:special={() => updateSpecial(mail.id)}
+			on:delete={() => deleteEmail(mail.id)}
+			propSender={mail.sender}
+			propSubject={mail.subject}
+			propSpecial={mail.special}
+		/>
 	{/each}
 </div>
 

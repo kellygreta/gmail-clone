@@ -5,12 +5,16 @@
 	let subject = '';
 	let emailBody = '';
 	let files;
-	let count = 200;
+	let count = 300;
 
-	async function getSender(id) {
-		const data = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`);
-		return await data.json();
-	}
+	const onFileSelected = (e) => {
+		let image = e.target.files[0];
+		let reader = new FileReader();
+		reader.readAsDataURL(image);
+		reader.onload = (e) => {
+			avatar = e.target.result;
+		};
+	};
 
 	async function sendEmail() {
 		let emails = window.localStorage.getItem('emails');
@@ -26,6 +30,7 @@
 			recipient: recipient,
 			subject: subject,
 			body: emailBody,
+			//TODO attachments not working da modificare
 			attachments: files,
 			special: false,
 			deleted: false,
@@ -33,8 +38,8 @@
 		};
 
 		emails.push(email);
-
 		window.localStorage.setItem('emails', JSON.stringify(emails));
+		emails = emails;
 	}
 </script>
 
