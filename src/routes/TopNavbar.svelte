@@ -3,11 +3,12 @@
 	let query = '';
 
 	function searchMail() {
-		var emails = window.localStorage.getItem('emails');
+		let emails = window.localStorage.getItem('emails');
 
 		if (query.length > 1 && emails != null) {
 			emails = JSON.parse(emails);
-			for (var i = 0; i < emails.length; i++) {
+			for (let i = 0; i < emails.length; i++) {
+				//filter
 				if (emails[i].body.toLowerCase().includes(query.toLowerCase())) {
 					//TODO sender
 					//let recipient = emails[i].recipient;

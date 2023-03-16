@@ -4,6 +4,8 @@
 	export let propSpecial;
 	export let propID;
 	//export let data;
+	export let isSpecial;
+	export let isDeleted;
 
 	function updateSpecial(id) {
 		let emails = window.localStorage.getItem('emails');
@@ -43,7 +45,7 @@
 	}
 </script>
 
-<div class=" flex border-b-2 border-gray-200 hover:shadow-xl">
+<div class="group flex border-b-2 border-gray-200 hover:shadow-xl">
 	<div class="h-14 w-14 flex-none">
 		<img class="h-5  object-contain" src="/images/check_box.png" alt="check_box" />
 	</div>
@@ -56,7 +58,10 @@
 	</div>
 	<div class="h-14 w-80 flex-none">{propSender}</div>
 	<div class="h-14 w-2/5 flex-none">{propSubject}</div>
-	<div class=" h-14 w-14 flex-none bg-slate-600" on:click={() => deleteEmail(propID)}>
+	<div
+		class="invisible h-14 w-14 flex-none group-hover:visible"
+		on:click={() => deleteEmail(propID)}
+	>
 		<img class="h-5  object-contain" src="/images/delete.png" alt="delete-icon" />
 	</div>
 </div>
