@@ -7,14 +7,14 @@
 	let files;
 	let count = 300;
 
-	const onFileSelected = (e) => {
-		let image = e.target.files[0];
-		let reader = new FileReader();
-		reader.readAsDataURL(image);
-		reader.onload = (e) => {
-			avatar = e.target.result;
-		};
-	};
+	// const onFileSelected = (e) => {
+	// 	let image = e.target.files[0];
+	// 	let reader = new FileReader();
+	// 	reader.readAsDataURL(image);
+	// 	reader.onload = (e) => {
+	// 		avatar = e.target.result;
+	// 	};
+	// };
 
 	async function sendEmail() {
 		let emails = window.localStorage.getItem('emails');

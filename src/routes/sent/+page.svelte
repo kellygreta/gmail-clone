@@ -1,8 +1,20 @@
 <script>
 	import EmailItem from '../EmailItem.svelte';
+	import { browser } from '$app/environment';
+	import { setContext } from 'svelte';
+	import { onMount } from 'svelte';
+	import searchMail from './topNavbar.svelte';
+
+	let searchBar = false;
+
+	import { getContext } from 'svelte';
+	onMount(function () {});
+	let searchMailSent = getContext('searchMailSent');
+
+	console.log(searchMailSent);
 
 	function getSentEmailData() {
-		let emails = window.localStorage.getItem('emails');
+		let emails = browser ? window.localStorage.getItem('emails') : null;
 
 		if (emails === null) {
 			emails = [];
@@ -14,6 +26,8 @@
 	}
 
 	let emails = getSentEmailData();
+
+	setContext('emails', emails);
 
 	function updateSpecial(id) {
 		const email = emails.find((email) => email.id == id);
@@ -55,16 +69,27 @@
 			<img class="h-5  object-contain" src="/images/more_vert.png" alt="more_vert-icon" />
 		</div>
 	</div>
-	{#each emails as mail}
-		<EmailItem
-			on:special={() => updateSpecial(mail.id)}
-			on:delete={() => deleteEmail(mail.id)}
-			on:specific={() => openSpecific(mail.id)}
-			propSender={mail.sender}
-			propSubject={mail.subject}
-			propSpecial={mail.special}
-		/>
-	{/each}
+	{#if searchMailSent != null && searchMailSent.lenght > 1}
+		{#each searchMailSent as mail}
+			<EmailItem
+				on:special={() => updateSpecial(mail.id)}
+				on:delete={() => deleteEmail(mail.id)}
+				propSender={mail.sender}
+				propSubject={mail.subject}
+				propSpecial={mail.special}
+			/>
+		{/each}
+	{:else}
+		{#each emails as mail}
+			<EmailItem
+				on:special={() => updateSpecial(mail.id)}
+				on:delete={() => deleteEmail(mail.id)}
+				propSender={mail.sender}
+				propSubject={mail.subject}
+				propSpecial={mail.special}
+			/>
+		{/each}
+	{/if}
 </div>
 
 <style></style>

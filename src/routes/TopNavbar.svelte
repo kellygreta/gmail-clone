@@ -1,25 +1,30 @@
 <script>
 	export let isOpen = true;
 	let query = '';
+	import { createEventDispatcher } from 'svelte';
+	const dispatch = createEventDispatcher();
 
-	function searchMail() {
-		let emails = window.localStorage.getItem('emails');
+	import { getContext } from 'svelte';
+	let emails = getContext('emails');
 
+	import { setContext } from 'svelte';
+
+	export function searchMail(query) {
+		//let emails = browser ? window.localStorage.getItem('emails') : null;
+		//console.log('search mail + query: ', query);
 		if (query.length > 1 && emails != null) {
 			emails = JSON.parse(emails);
-			for (let i = 0; i < emails.length; i++) {
-				//filter
-				if (emails[i].body.toLowerCase().includes(query.toLowerCase())) {
-					//TODO sender
-					//let recipient = emails[i].recipient;
-					let subject = emails[i].subject;
-					let stato = emails[i].stato;
 
-					//TODO add tasto per aprire singola email
-				}
-			}
+			console.log(
+				'chiamata searchmail res ->',
+				emails.filter((email) => email.body.toLowerCase().includes(query.toLowerCase()))
+			);
+			return emails.filter((email) => email.body.toLowerCase().includes(query.toLowerCase()));
 		}
 	}
+
+	let searchMailSent = searchMail(query);
+	setContext('searchMailSent', searchMailSent);
 
 	/*myInput:onfocus = function () {
 		document.getElementById('resultMail').style.display = 'block';
@@ -54,6 +59,9 @@
 			</span>
 			<input
 				bind:value={query}
+				on:keyup={() => {
+					searchMail(query);
+				}}
 				class="rounded-md bg-slate-200  pl-3 text-black placeholder-slate-500 outline-none focus:bg-white"
 				name="cerca"
 				id="cerca"

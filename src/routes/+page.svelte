@@ -2,38 +2,44 @@
 	//TODO Le mail possono essere ordinabili per data, dalla più recente a quella più vecchia e viceversa
 	/** @type {import('./$types').PageData} */
 	export let data;
-	//$: console.log('data', data);
-
+	import { browser } from '$app/environment';
+	import { setContext } from 'svelte';
 	import EmailItem from './EmailItem.svelte';
 
 	function getAPIEmailData() {
-		let emailsAPI = window.localStorage.getItem('emailsAPI');
+		let emailsAPI = browser ? window.localStorage.getItem('emailsAPI') : null;
 
 		if (emailsAPI === null) {
+			console.log('ciao');
 			emailsAPI = [];
 		} else {
 			emailsAPI = JSON.parse(emailsAPI);
 		}
 
-		data.infos.forEach((info) => {
-			let email = {
-				sender: info.user.mail,
-				recipient: 'gvigano@efebia.com',
-				subject: info.title,
-				body: info.body,
-				special: false,
-				deleted: false,
-				id: info.idm
-			};
-			console.log(email);
-			emailsAPI.push(email);
-		});
+		if (emailsAPI.length == 0) {
+			data.infos.forEach((info) => {
+				let email = {
+					sender: info.user.email,
+					recipient: 'gvigano@efebia.com',
+					subject: info.title,
+					body: info.body,
+					special: false,
+					deleted: false,
+					id: info.idm
+				};
+				//console.log(email);
+				emailsAPI.push(email);
+				if (browser) {
+					window.localStorage.setItem('emailsAPI', JSON.stringify(emailsAPI));
+				}
+			});
+		}
 
-		window.localStorage.setItem('emailsAPI', JSON.stringify(emails));
 		return emailsAPI;
 	}
 
 	let emailsAPI = getAPIEmailData();
+	setContext('emailsAPI', emailsAPI);
 
 	function updateSpecial(id) {
 		const email = emailsAPI.find((email) => email.id == id);
@@ -55,7 +61,7 @@
 	}
 </script>
 
-<div class="z-1 absolute left-48 top-24 w-4/5 rounded-md">
+<div class="z-1 absolute left-48 top-24 w-full rounded-md">
 	<div class="flex border-b-2 border-gray-200">
 		<div class="h-14 w-14 flex-none">
 			<img class="h-5  object-contain" src="/images/check_box.png" alt="check_box" />
