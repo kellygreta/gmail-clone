@@ -1,3 +1,5 @@
+import { browser } from '$app/environment';
+
 function getSentEmailData() {
 	let emails = browser ? window.localStorage.getItem('emails') : null;
 
@@ -35,6 +37,6 @@ export const load = ({ fetch, params }) => {
 	};
 
 	return {
-		product: fetchEmail(params.emailid)
+		email: fetchEmail(params.emailid)
 	};
 };

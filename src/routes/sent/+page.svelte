@@ -11,8 +11,6 @@
 	import { getContext } from 'svelte';
 	let searchMailSent = getContext('searchMailSent');
 
-	onMount(function () {});
-
 	console.log(searchMailSent);
 
 	function getSentEmailData() {

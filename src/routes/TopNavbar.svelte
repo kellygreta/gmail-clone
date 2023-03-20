@@ -7,24 +7,23 @@
 	import { getContext } from 'svelte';
 	let emails = getContext('emails');
 
-	import { setContext } from 'svelte';
-
+	//TODO usare gli store
 	export function searchMail(query) {
 		//let emails = browser ? window.localStorage.getItem('emails') : null;
-		//console.log('search mail + query: ', query);
+		console.log('search mail + query: ', query);
 		if (query.length > 1 && emails != null) {
 			emails = JSON.parse(emails);
-
+			console.log('qui');
 			console.log(
-				'chiamata searchmail res ->',
+				'risultati ricerca: ',
 				emails.filter((email) => email.body.toLowerCase().includes(query.toLowerCase()))
 			);
 			return emails.filter((email) => email.body.toLowerCase().includes(query.toLowerCase()));
 		}
 	}
 
-	let searchMailSent = searchMail(query);
-	setContext('searchMailSent', searchMailSent);
+	//TODO non funziona!!
+	console.log(searchMail(query));
 
 	/*myInput:onfocus = function () {
 		document.getElementById('resultMail').style.display = 'block';

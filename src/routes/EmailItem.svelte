@@ -21,7 +21,7 @@
 	</div>
 	<div class="h-14 w-80 flex-none">{propSender}</div>
 	<div class="h-14 w-2/5 flex-none">
-		<a href="/specific/{propID}" data-sveltkit-prefetch>{propSubject}</a>
+		<a href="/{propID}" data-sveltkit-prefetch>{propSubject}</a>
 	</div>
 
 	<div

@@ -1,7 +1,23 @@
 <script>
-	import EmailItem from '../EmailItem.svelte';
+	import EmailItem from './EmailItem.svelte';
+	import { browser } from '$app/environment';
 
-	export let email;
+	export let data;
+	const { email } = data;
+
+	function getSentEmailData() {
+		let emails = browser ? window.localStorage.getItem('emails') : null;
+
+		if (emails === null) {
+			emails = [];
+		} else {
+			emails = JSON.parse(emails);
+		}
+
+		return emails;
+	}
+
+	let emails = getSentEmailData();
 
 	function updateSpecial() {
 		if (email) {
@@ -22,7 +38,7 @@
 </script>
 
 <div class="h-6 w-0.5 bg-gray-600" />
-<div class="z-1 absolute left-72 top-24 w-full rounded-md">
+<div class="z-1 absolute left-48 top-24 w-full rounded-md">
 	<div class="flex border-b-2 border-gray-200">
 		<a href="/">
 			<div class="h-14 w-14 flex-none">
@@ -69,12 +85,18 @@
 			<img class="h-5  object-contain" src="/images/more_vert.png" alt="more_vert-icon" />
 		</div>
 	</div>
+
+	<!-- propSender={email.sender}
+		propSubject={email.subject}
+		propSpecial={email.special}
+		propBody={email.body} -->
+
 	<EmailItem
 		on:special={() => updateSpecial()}
-		propSender={mail.sender}
-		propSubject={mail.subject}
-		propSpecial={mail.special}
-		propBody={mail.body}
+		propSender={email.sender}
+		propSubject={email.subject}
+		propSpecial={email.special}
+		propBody={email.body}
 	/>
 </div>
 
