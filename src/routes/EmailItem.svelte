@@ -20,7 +20,9 @@
 		{/if}
 	</div>
 	<div class="h-14 w-80 flex-none">{propSender}</div>
-	<div class="h-14 w-2/5 flex-none"><a href="/specific/{propID}">{propSubject}</a></div>
+	<div class="h-14 w-2/5 flex-none">
+		<a href="/specific/{propID}" data-sveltkit-prefetch>{propSubject}</a>
+	</div>
 
 	<div
 		class="invisible h-14 w-14 flex-none group-hover:visible"
