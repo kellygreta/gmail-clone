@@ -10,7 +10,6 @@
 		let emailsAPI = browser ? window.localStorage.getItem('emailsAPI') : null;
 
 		if (emailsAPI === null) {
-			console.log('ciao');
 			emailsAPI = [];
 		} else {
 			emailsAPI = JSON.parse(emailsAPI);
@@ -27,7 +26,6 @@
 					deleted: false,
 					id: info.idm
 				};
-				//console.log(email);
 				emailsAPI.push(email);
 				if (browser) {
 					window.localStorage.setItem('emailsAPI', JSON.stringify(emailsAPI));
@@ -92,6 +90,7 @@
 			propSender={mail.sender}
 			propSubject={mail.subject}
 			propSpecial={mail.special}
+			propID={mail.id}
 		/>
 	{/each}
 </div>

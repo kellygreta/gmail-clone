@@ -3,13 +3,15 @@
 	import { browser } from '$app/environment';
 	import { setContext } from 'svelte';
 	import { onMount } from 'svelte';
-	import searchMail from './topNavbar.svelte';
+	//TODO ricerca contenuto email
+	import searchMail from '../topNavbar.svelte';
 
 	let searchBar = false;
 
 	import { getContext } from 'svelte';
-	onMount(function () {});
 	let searchMailSent = getContext('searchMailSent');
+
+	onMount(function () {});
 
 	console.log(searchMailSent);
 
@@ -87,6 +89,7 @@
 				propSender={mail.sender}
 				propSubject={mail.subject}
 				propSpecial={mail.special}
+				propID={mail.id}
 			/>
 		{/each}
 	{/if}

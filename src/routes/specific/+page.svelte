@@ -1,13 +1,5 @@
 <script>
 	import EmailItem from '../EmailItem.svelte';
-	var id = getParameter('url');
-	console.log(id);
-
-	function getParameter(parameter) {
-		var query = window.location.search;
-		var urlParams = new URLSearchParams(query);
-		return urlParams.get(parameter);
-	}
 
 	const email = emails.find((email) => email.id == id);
 
