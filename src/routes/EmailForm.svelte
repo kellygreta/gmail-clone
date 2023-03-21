@@ -34,7 +34,7 @@
 			attachments: files,
 			special: false,
 			deleted: false,
-			id: count++
+			id: (count += 1)
 		};
 
 		emails.push(email);

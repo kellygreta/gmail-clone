@@ -4,6 +4,7 @@
 
 	export let data;
 	const { email } = data;
+	//console.log(email);
 
 	function getSentEmailData() {
 		let emails = browser ? window.localStorage.getItem('emails') : null;
@@ -17,34 +18,78 @@
 		return emails;
 	}
 
-	let emails = getSentEmailData();
+	function getAPIEmailData() {
+		let emailsAPI = browser ? window.localStorage.getItem('emailsAPI') : null;
 
-	function updateSpecial() {
-		if (email) {
-			email.special = !email.special;
+		if (emailsAPI === null) {
+			emailsAPI = [];
+		} else {
+			emailsAPI = JSON.parse(emailsAPI);
 		}
 
-		emails = emails;
-		window.localStorage.setItem('emails', JSON.stringify(emails));
+		return emailsAPI;
+	}
+
+	let emails = getSentEmailData();
+	let emailsAPI = getAPIEmailData();
+
+	function updateSpecial() {
+		if (email.sender == 'gvigano@efebia.com') {
+			console.log('click on update special sent');
+			const toUpdate = emails.find((toDelete) => toDelete.id == email.id);
+			console.log('toUpdate', toUpdate);
+			console.log('toUpdate.special prima', toUpdate.special);
+			toUpdate.special = !toUpdate.special;
+			console.log('toUpdate.special dopo', toUpdate.special);
+			emails = emails;
+			window.localStorage.setItem('emails', JSON.stringify(emails));
+			console.log(emails);
+		} else {
+			console.log('click on update special API');
+			const toUpdate = emailsAPI.find((toDelete) => toDelete.id == email.id);
+			console.log('toUpdate', toUpdate);
+			console.log('toUpdate.special prima', toUpdate.special);
+			toUpdate.special = !toUpdate.special;
+			console.log('toUpdate.special dopo', toUpdate.special);
+			emailsAPI = emailsAPI;
+			window.localStorage.setItem('emailsAPI', JSON.stringify(emailsAPI));
+			console.log(emailsAPI);
+		}
 	}
 
 	function deleteEmail() {
-		const index = emails.indexOf(email);
-		emails.splice(index, 1);
-
-		emails = emails;
-		window.localStorage.setItem('emails', JSON.stringify(emails));
+		if (email.sender == 'gvigano@efebia.com') {
+			const index = emails.findIndex((toDelete) => toDelete.id == email.id);
+			emails.splice(index, 1);
+			emails = emails;
+			window.localStorage.setItem('emails', JSON.stringify(emails));
+		} else {
+			console.log('sono qui API');
+			const index = emailsAPI.findIndex((toDelete) => toDelete.id == email.id);
+			console.log('index', index);
+			emailsAPI.splice(index, 1);
+			emailsAPI = emailsAPI;
+			window.localStorage.setItem('emailsAPI', JSON.stringify(emailsAPI));
+		}
 	}
 </script>
 
 <div class="h-6 w-0.5 bg-gray-600" />
 <div class="z-1 absolute left-48 top-24 w-full rounded-md">
 	<div class="flex border-b-2 border-gray-200">
-		<a href="/">
-			<div class="h-14 w-14 flex-none">
-				<img class="h-5  object-contain" src="/images/arrow_back.png" alt="arrow_back" />
-			</div>
-		</a>
+		{#if email.id >= 300}
+			<a href="/sent">
+				<div class="h-14 w-14 flex-none">
+					<img class="h-5  object-contain" src="/images/arrow_back.png" alt="arrow_back" />
+				</div>
+			</a>
+		{:else}
+			<a href="/">
+				<div class="h-14 w-14 flex-none">
+					<img class="h-5  object-contain" src="/images/arrow_back.png" alt="arrow_back" />
+				</div>
+			</a>
+		{/if}
 		<div class="h-14 w-14 flex-initial">
 			<img class="h-5  object-contain" src="/images/archive.png" alt="archive-icon" />
 		</div>
@@ -86,17 +131,13 @@
 		</div>
 	</div>
 
-	<!-- propSender={email.sender}
-		propSubject={email.subject}
-		propSpecial={email.special}
-		propBody={email.body} -->
-
 	<EmailItem
 		on:special={() => updateSpecial()}
 		propSender={email.sender}
 		propSubject={email.subject}
 		propSpecial={email.special}
 		propBody={email.body}
+		propRecipiant={email.recipiant}
 	/>
 </div>
 

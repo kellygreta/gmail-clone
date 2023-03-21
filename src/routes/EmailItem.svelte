@@ -12,6 +12,7 @@
 	<div class="h-14 w-14 flex-none">
 		<img class="h-5  object-contain" src="/images/check_box.png" alt="check_box" />
 	</div>
+	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<div class="h-14 w-14 flex-none" on:click={() => dispatch('special')}>
 		{#if propSpecial}
 			<img class="h-5  object-contain" src="/images/special.png" alt="special-icon" />
@@ -23,7 +24,7 @@
 	<div class="h-14 w-2/5 flex-none">
 		<a href="/{propID}" data-sveltkit-prefetch>{propSubject}</a>
 	</div>
-
+	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<div
 		class="invisible h-14 w-14 flex-none group-hover:visible"
 		on:click={() => dispatch('delete')}

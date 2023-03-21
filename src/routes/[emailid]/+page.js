@@ -27,9 +27,9 @@ function getAPIEmailData() {
 let emails = getSentEmailData();
 let emailsAPI = getAPIEmailData();
 
-export const load = ({ fetch, params }) => {
+export let load = ({ fetch, params }) => {
 	const fetchEmail = async (id) => {
-		const email = emailsAPI.find((email) => email.id == id);
+		let email = emailsAPI.find((email) => email.id == id);
 		if (!email) {
 			email = emails.find((email) => email.id == id);
 		}

@@ -53,7 +53,6 @@
 		const email = emailsAPI.find((email) => email.id == id);
 		const index = emailsAPI.indexOf(email);
 		emailsAPI.splice(index, 1);
-
 		emailsAPI = emailsAPI;
 		window.localStorage.setItem('emailsAPI', JSON.stringify(emailsAPI));
 	}
@@ -71,17 +70,6 @@
 			<img class="h-5  object-contain" src="/images/more_vert.png" alt="more_vert-icon" />
 		</div>
 	</div>
-
-	<!-- {#each data.infos as info}
-		{#if !info.deleted}
-			<EmailItem
-				propSender="{info.user.email},"
-				propSubject="{info.title},"
-				propSpecial="{info.special},"
-				propID={info.idm}
-			/>
-		{/if}
-	{/each} -->
 
 	{#each emailsAPI as mail}
 		<EmailItem
