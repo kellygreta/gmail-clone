@@ -4,8 +4,9 @@
 	let recipient = [];
 	let subject = '';
 	let emailBody = '';
-	let files;
+	let files = [];
 	let count = 300;
+	import { browser } from '$app/environment';
 
 	// const onFileSelected = (e) => {
 	// 	let image = e.target.files[0];
@@ -25,13 +26,29 @@
 			emails = JSON.parse(emails);
 		}
 
+		let filesArr = browser ? window.localStorage.getItem('filesArr') : null;
+		Object.values(files).forEach((file) =>
+			file.addEventListener('change', () => {
+				const reader = new FileReader();
+				reader.readAsDataURL(file);
+				console.log('file', file);
+				reader.addEventListener('load', () => {
+					console.log('file', file);
+					filesArr.push(file);
+				});
+			})
+		);
+		//$: console.log(files);
+		window.localStorage.setItem('filesArr', JSON.stringify(filesArr));
+		filesArr = filesArr;
+
 		let email = {
 			sender: 'gvigano@efebia.com',
 			recipient: recipient,
 			subject: subject,
 			body: emailBody,
 			//TODO attachments not working da modificare
-			attachments: files,
+			attachments: filesArr,
 			special: false,
 			deleted: false,
 			id: (count += 1)
