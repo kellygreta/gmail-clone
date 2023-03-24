@@ -18,6 +18,7 @@
 		if (emailsAPI.length == 0) {
 			data.infos.forEach((info) => {
 				let email = {
+					name: info.user.name,
 					sender: info.user.email,
 					recipient: 'gvigano@efebia.com',
 					subject: info.title,

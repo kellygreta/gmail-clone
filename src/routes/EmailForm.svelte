@@ -3,10 +3,11 @@
 	export let writeMail = false;
 	let recipient = [];
 	let subject = '';
+	let imgPreview;
 	let emailBody = '';
-	let files = [];
 	let count = 300;
 	import { browser } from '$app/environment';
+	let files = [];
 
 	// const onFileSelected = (e) => {
 	// 	let image = e.target.files[0];
@@ -17,6 +18,66 @@
 	// 	};
 	// };
 
+	function dragOverHandler(ev) {
+		console.log('File(s) in drop zone');
+
+		// Prevent default behavior (Prevent file from being opened)
+		ev.preventDefault();
+	}
+
+	function dropHandler(ev) {
+		console.log('File(s) dropped');
+
+		// Prevent default behavior (Prevent file from being opened)
+		ev.preventDefault();
+
+		if (ev.dataTransfer.items) {
+			// Use DataTransferItemList interface to access the file(s)
+			[...ev.dataTransfer.items].forEach((item, i) => {
+				// If dropped items aren't files, reject them
+				if (item.kind === 'file') {
+					const file = item.getAsFile();
+					console.log(`… file[${i}].name = ${file.name}`);
+				}
+			});
+		} else {
+			// Use DataTransfer interface to access the file(s)
+			[...ev.dataTransfer.files].forEach((file, i) => {
+				console.log(`… file[${i}].name = ${file.name}`);
+			});
+		}
+	}
+
+	function readFile(e) {
+		files = [];
+		//let filesArr = browser ? window.localStorage.getItem('filesArr') : null;
+		const eventFiles = e.target.files;
+		console.log('eventFiles', eventFiles);
+		Object.values(eventFiles).forEach((file) => {
+			const reader = new FileReader();
+			reader.readAsDataURL(file);
+			//console.log('file', file);
+			reader.addEventListener('load', () => {
+				//console.log('file', file);
+				//console.log('reader.result', reader.result);
+				//imgPreview.setAttribute('src', reader.result);
+
+				imgPreview.innerHTML += `
+                <div class="image_box">
+                    <img  object-scale-down
+					h-48
+					w-96 src='${reader.result}'>
+                </div>
+				
+            `;
+				files.push(reader.result);
+			});
+		});
+		//$: console.log(files);
+		//window.localStorage.setItem('filesArr', JSON.stringify(filesArr));
+		//filesArr = filesArr;
+	}
+
 	async function sendEmail() {
 		let emails = window.localStorage.getItem('emails');
 
@@ -26,29 +87,14 @@
 			emails = JSON.parse(emails);
 		}
 
-		let filesArr = browser ? window.localStorage.getItem('filesArr') : null;
-		Object.values(files).forEach((file) =>
-			file.addEventListener('change', () => {
-				const reader = new FileReader();
-				reader.readAsDataURL(file);
-				console.log('file', file);
-				reader.addEventListener('load', () => {
-					console.log('file', file);
-					filesArr.push(file);
-				});
-			})
-		);
-		//$: console.log(files);
-		window.localStorage.setItem('filesArr', JSON.stringify(filesArr));
-		filesArr = filesArr;
-
 		let email = {
+			name: 'Greta',
 			sender: 'gvigano@efebia.com',
 			recipient: recipient,
 			subject: subject,
 			body: emailBody,
 			//TODO attachments not working da modificare
-			attachments: filesArr,
+			attachments: files,
 			special: false,
 			deleted: false,
 			id: (count += 1)
@@ -129,7 +175,9 @@
 			</div>
 			<div class="m-3 grid-cols-1">
 				<input
-					bind:files
+					on:change={(event) => {
+						readFile(event);
+					}}
 					name="attachments"
 					id="attachments"
 					class="form-control"
@@ -138,6 +186,17 @@
 					placeholder="Attachments..."
 				/>
 			</div>
+
+			<div
+				class="border border-black"
+				id="drop_zone"
+				ondrop="dropHandler(event);"
+				ondragover="dragOverHandler(event);"
+			>
+				<p>Drag and Drop uno o più files in questa <i>drop zone</i>.</p>
+			</div>
+
+			<div bind:this={imgPreview} class="m-3 grid-cols-1" />
 
 			<!-- TODO add allegati, caricabili sia con il classico selettore di file che con un sistema di drag and drop  -->
 

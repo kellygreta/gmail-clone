@@ -74,8 +74,8 @@
 	}
 </script>
 
-<div class="h-6 w-0.5 bg-gray-600" />
-<div class="z-1 absolute left-48 top-24 w-full rounded-md">
+<div class="h-6 w-full bg-gray-600" />
+<div class="z-1 absolute left-48 top-24 w-fit rounded-md ">
 	<div class="flex border-b-2 border-gray-200">
 		{#if email.id >= 300}
 			<a href="/sent">
@@ -97,6 +97,7 @@
 			<img class="h-5  object-contain" src="/images/report.png" alt="report-icon" />
 		</div>
 		<!-- TODO eliminare email -->
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<div
 			class="h-14 w-14 flex-initial"
 			on:click={() => {
@@ -137,7 +138,9 @@
 		propSubject={email.subject}
 		propSpecial={email.special}
 		propBody={email.body}
-		propRecipiant={email.recipiant}
+		propRecipiant={email.recipient}
+		propName={email.name}
+		propAttachments={email.attachments}
 	/>
 </div>
 
