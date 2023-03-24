@@ -9,59 +9,30 @@
 	import { browser } from '$app/environment';
 	let files = [];
 
-	// const onFileSelected = (e) => {
-	// 	let image = e.target.files[0];
-	// 	let reader = new FileReader();
-	// 	reader.readAsDataURL(image);
-	// 	reader.onload = (e) => {
-	// 		avatar = e.target.result;
-	// 	};
-	// };
-
+	// Prevent default behavior (Prevent file from being opened)
 	function dragOverHandler(ev) {
-		console.log('File(s) in drop zone');
-
-		// Prevent default behavior (Prevent file from being opened)
 		ev.preventDefault();
 	}
 
 	function dropHandler(ev) {
-		console.log('File(s) dropped');
-
 		// Prevent default behavior (Prevent file from being opened)
 		ev.preventDefault();
-
-		if (ev.dataTransfer.items) {
-			// Use DataTransferItemList interface to access the file(s)
-			[...ev.dataTransfer.items].forEach((item, i) => {
-				// If dropped items aren't files, reject them
-				if (item.kind === 'file') {
-					const file = item.getAsFile();
-					console.log(`… file[${i}].name = ${file.name}`);
-				}
-			});
-		} else {
-			// Use DataTransfer interface to access the file(s)
-			[...ev.dataTransfer.files].forEach((file, i) => {
-				console.log(`… file[${i}].name = ${file.name}`);
-			});
-		}
+		readFile(ev.dataTransfer.files);
 	}
 
-	function readFile(e) {
+	function readFile(eventFiles) {
 		files = [];
 		//let filesArr = browser ? window.localStorage.getItem('filesArr') : null;
-		const eventFiles = e.target.files;
-		console.log('eventFiles', eventFiles);
+		// let eventFiles;
+		// if (e.dataTransfer.files != undefined) {
+		// 	eventFiles = e.dataTransfer.files;
+		// } else {
+		// 	eventFiles = e.target.files;
+		// }
 		Object.values(eventFiles).forEach((file) => {
 			const reader = new FileReader();
 			reader.readAsDataURL(file);
-			//console.log('file', file);
 			reader.addEventListener('load', () => {
-				//console.log('file', file);
-				//console.log('reader.result', reader.result);
-				//imgPreview.setAttribute('src', reader.result);
-
 				imgPreview.innerHTML += `
                 <div class="image_box">
                     <img  object-scale-down
@@ -73,9 +44,6 @@
 				files.push(reader.result);
 			});
 		});
-		//$: console.log(files);
-		//window.localStorage.setItem('filesArr', JSON.stringify(filesArr));
-		//filesArr = filesArr;
 	}
 
 	async function sendEmail() {
@@ -125,6 +93,7 @@
 						</div>
 					</a>
 					<a href="">
+						<!-- svelte-ignore a11y-click-events-have-key-events -->
 						<div
 							class="flex items-center space-x-1  hover:bg-slate-200"
 							on:click={() => {
@@ -173,27 +142,28 @@
 					placeholder="Scrivi..."
 				/>
 			</div>
-			<div class="m-3 grid-cols-1">
+
+			<div
+				class="m-3 grid-cols-1 border border-dotted border-black"
+				on:drop={(event) => {
+					dropHandler(event);
+				}}
+				on:dragover={(event) => {
+					dragOverHandler(event);
+				}}
+			>
 				<input
 					on:change={(event) => {
-						readFile(event);
+						readFile(event.target.files);
 					}}
 					name="attachments"
 					id="attachments"
 					class="form-control"
 					multiple
 					type="file"
-					placeholder="Attachments..."
 				/>
-			</div>
-
-			<div
-				class="border border-black"
-				id="drop_zone"
-				ondrop="dropHandler(event);"
-				ondragover="dragOverHandler(event);"
-			>
-				<p>Drag and Drop uno o più files in questa <i>drop zone</i>.</p>
+				<!-- svelte-ignore a11y-label-has-associated-control -->
+				<label>Drag and Drop uno o più files in questa <i>drop zone</i>.</label>
 			</div>
 
 			<div bind:this={imgPreview} class="m-3 grid-cols-1" />
