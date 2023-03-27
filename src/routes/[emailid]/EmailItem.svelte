@@ -30,14 +30,23 @@
 			<h2 class="text-sm">{propName} &lt;{propSender}&gt;</h2>
 		</div>
 		<div class="flex h-12  w-full items-center justify-end space-x-3 ">
-			<!-- svelte-ignore a11y-click-events-have-key-events -->
-			<div on:click={() => dispatch('special')}>
-				{#if propSpecial}
-					<img class="h-5  object-contain" src="/images/special.png" alt="special-icon" />
-				{:else}
-					<img class="h-5  object-contain" src="/images/notSpecial.png" alt="notSpecial-icon" />
-				{/if}
-			</div>
+			{#if propSpecial}
+				<!-- svelte-ignore a11y-click-events-have-key-events -->
+				<img
+					class="flex h-5 object-contain"
+					on:click={() => dispatch('special')}
+					src="/images/special.png"
+					alt="special-icon"
+				/>
+			{:else}
+				<!-- svelte-ignore a11y-click-events-have-key-events -->
+				<img
+					class="flex h-5 object-contain"
+					on:click={() => dispatch('special')}
+					src="/images/notSpecial.png"
+					alt="notSpecial-icon"
+				/>
+			{/if}
 			<img class="flex h-5  object-contain" src="/images/reply.png" alt="reply-icon" />
 			<img class="flex h-5  object-contain" src="/images/more_vert.png" alt="more_vert-icon" />
 		</div>

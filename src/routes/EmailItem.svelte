@@ -3,12 +3,29 @@
 	export let propSubject;
 	export let propSpecial;
 	export let propID;
+	let item;
 
 	import { createEventDispatcher } from 'svelte';
 	const dispatch = createEventDispatcher();
+	function handleDragStart(e) {
+		this.style.opacity = '0.4';
+	}
+
+	function handleDragEnd(e) {
+		this.style.opacity = '1';
+	}
+
+	//console.log('item', item);
+
+	// item.addEventListener('dragstart', handleDragStart, false);
+	// item.addEventListener('dragend', handleDragEnd, false);
 </script>
 
-<div draggable="true" class="group flex border-b-2 border-gray-200 hover:shadow-xl">
+<div
+	draggable="true"
+	class="group flex border-b-2 border-gray-200 hover:shadow-xl"
+	bind:this={item}
+>
 	<div class="h-14 w-14 flex-none">
 		<img class="h-5  object-contain" src="/images/check_box.png" alt="check_box" />
 	</div>

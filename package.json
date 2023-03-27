@@ -25,6 +25,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"dayjs": "^1.11.7",
 		"svelte-material-icons": "^3.0.4"
 	}
 }

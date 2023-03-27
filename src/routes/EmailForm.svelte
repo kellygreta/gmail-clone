@@ -1,4 +1,7 @@
 <script>
+	import dayjs from 'dayjs';
+	import relativeTime from 'dayjs/plugin/relativeTime';
+
 	//TODO Le mail devono essere salvate, indipendentemente da refresh o stop dell’applicazione.
 	export let writeMail = false;
 	let recipient = [];
@@ -8,6 +11,15 @@
 	let count = 300;
 	import { browser } from '$app/environment';
 	let files = [];
+
+	dayjs.extend(relativeTime);
+	//import dayjs from 'dayjs' // ES 2015
+	dayjs().format();
+
+	const now = dayjs().format('H:m:s DD MMM YYYY');
+
+	console.log('now', now);
+	console.log(' dayjs().fromNow()', dayjs().fromNow());
 
 	// Prevent default behavior (Prevent file from being opened)
 	function dragOverHandler(ev) {
@@ -65,7 +77,8 @@
 			attachments: files,
 			special: false,
 			deleted: false,
-			id: (count += 1)
+			id: (count = count + 1),
+			time: dayjs().format('H:m:s DD MMM YYYY')
 		};
 
 		emails.push(email);
@@ -92,6 +105,7 @@
 							<img class="h-5  object-contain" src="/images/full.png" alt="full-icon" />
 						</div>
 					</a>
+					<!-- svelte-ignore a11y-invalid-attribute -->
 					<a href="">
 						<!-- svelte-ignore a11y-click-events-have-key-events -->
 						<div
