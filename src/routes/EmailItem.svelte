@@ -3,7 +3,11 @@
 	export let propSubject;
 	export let propSpecial;
 	export let propID;
+	export let propData;
 	let item;
+
+	let data = new Date(propData);
+	data = data.toDateString();
 
 	import { createEventDispatcher } from 'svelte';
 	const dispatch = createEventDispatcher();
@@ -13,18 +17,22 @@
 
 	function handleDragEnd(e) {
 		this.style.opacity = '1';
+		console.log('this', this);
+		console.log('e', e);
 	}
 
 	//console.log('item', item);
 
-	// item.addEventListener('dragstart', handleDragStart, false);
-	// item.addEventListener('dragend', handleDragEnd, false);
+	//item.addEventListener('dragstart', handleDragStart, false);
+	//item.addEventListener('dragend', handleDragEnd, false);
 </script>
 
 <div
 	draggable="true"
-	class="group flex border-b-2 border-gray-200 hover:shadow-xl"
+	class="group flex w-full border-b-2 border-gray-200 hover:shadow-xl"
 	bind:this={item}
+	on:dragstart={handleDragStart}
+	on:dragend={handleDragEnd}
 >
 	<div class="h-14 w-14 flex-none">
 		<img class="h-5  object-contain" src="/images/check_box.png" alt="check_box" />
@@ -41,6 +49,11 @@
 	<div class="h-14 w-2/5 flex-none">
 		<a href="/{propID}" data-sveltkit-prefetch>{propSubject}</a>
 	</div>
+	{#if propSender == 'gvigano@efebia.com'}
+		<div class="h-14 w-2/5 flex-none">
+			<div class="h-14 w-80 flex-none">{data}</div>
+		</div>
+	{/if}
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<div
 		class="invisible h-14 w-14 flex-none group-hover:visible"

@@ -3,8 +3,6 @@
 	export let writeMail = false;
 </script>
 
-<!-- TODO add funzionalità per “in arrivo”, “bozze”, “speciali” -->
-
 <div class="flex h-screen w-fit max-w-[16rem] flex-col rounded-md bg-slate-100">
 	<div class="flex w-fit items-center space-x-4 px-6 pl-6 pt-3">
 		<button

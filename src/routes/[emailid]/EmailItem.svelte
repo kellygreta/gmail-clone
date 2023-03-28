@@ -6,11 +6,14 @@
 	export let propRecipiant;
 	export let propName;
 	export let propAttachments;
-	let imgPreview;
+	export let propData;
 
 	import { createEventDispatcher } from 'svelte';
 	import { HtmlTag } from 'svelte/internal';
 	const dispatch = createEventDispatcher();
+
+	let data = new Date(propData);
+	data = data.toDateString();
 </script>
 
 <div class="flex flex-col border-b-2 border-gray-200 pl-2">
@@ -29,7 +32,12 @@
 		<div class="flex h-5 w-full flex-none">
 			<h2 class="text-sm">{propName} &lt;{propSender}&gt;</h2>
 		</div>
-		<div class="flex h-12  w-full items-center justify-end space-x-3 ">
+		<div class="flex h-12 w-full items-center justify-end space-x-3 ">
+			{#if propSender == 'gvigano@efebia.com'}
+				<div class="flex">
+					<p class="text-xs">{data}</p>
+				</div>
+			{/if}
 			{#if propSpecial}
 				<!-- svelte-ignore a11y-click-events-have-key-events -->
 				<img

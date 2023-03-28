@@ -2,7 +2,6 @@
 	import dayjs from 'dayjs';
 	import relativeTime from 'dayjs/plugin/relativeTime';
 
-	//TODO Le mail devono essere salvate, indipendentemente da refresh o stop dell’applicazione.
 	export let writeMail = false;
 	let recipient = [];
 	let subject = '';
@@ -12,14 +11,14 @@
 	import { browser } from '$app/environment';
 	let files = [];
 
-	dayjs.extend(relativeTime);
-	//import dayjs from 'dayjs' // ES 2015
-	dayjs().format();
+	// dayjs.extend(relativeTime);
+	// //import dayjs from 'dayjs' // ES 2015
+	// dayjs().format();
 
-	const now = dayjs().format('H:m:s DD MMM YYYY');
+	// const now = dayjs().format('H:m:s DD MMM YYYY');
 
-	console.log('now', now);
-	console.log(' dayjs().fromNow()', dayjs().fromNow());
+	// console.log('now', now);
+	// console.log(' dayjs().fromNow()', dayjs().fromNow());
 
 	// Prevent default behavior (Prevent file from being opened)
 	function dragOverHandler(ev) {
@@ -78,7 +77,7 @@
 			special: false,
 			deleted: false,
 			id: (count = count + 1),
-			time: dayjs().format('H:m:s DD MMM YYYY')
+			time: dayjs().toISOString()
 		};
 
 		emails.push(email);
@@ -133,8 +132,6 @@
 				/>
 			</div>
 
-			<!-- TODO add CC -->
-
 			<div class="m-3 grid-cols-1">
 				<input
 					bind:value={subject}
@@ -181,8 +178,6 @@
 			</div>
 
 			<div bind:this={imgPreview} class="m-3 grid-cols-1" />
-
-			<!-- TODO add allegati, caricabili sia con il classico selettore di file che con un sistema di drag and drop  -->
 
 			<div class="m-3 grid-cols-1">
 				<button

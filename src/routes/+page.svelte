@@ -1,5 +1,5 @@
 <script>
-	//TODO Le mail possono essere ordinabili per data, dalla più recente a quella più vecchia e viceversa
+	//TODO sort Le mail possono essere ordinabili per data, dalla più recente a quella più vecchia e viceversa
 	/** @type {import('./$types').PageData} */
 	export let data;
 	import { browser } from '$app/environment';

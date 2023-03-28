@@ -141,6 +141,7 @@
 		propRecipiant={email.recipient}
 		propName={email.name}
 		propAttachments={email.attachments}
+		propData={email.time}
 	/>
 </div>
 
