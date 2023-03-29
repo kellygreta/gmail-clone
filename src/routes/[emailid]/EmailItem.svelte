@@ -9,11 +9,11 @@
 	export let propData;
 
 	import { createEventDispatcher } from 'svelte';
-	import { HtmlTag } from 'svelte/internal';
 	const dispatch = createEventDispatcher();
+	import dayjs from 'dayjs';
 
-	let data = new Date(propData);
-	data = data.toDateString();
+	let data = dayjs(propData).locale('it-IT');
+	data = data.format(' DD MMM YYYY, H:mm:ss');
 </script>
 
 <div class="flex flex-col border-b-2 border-gray-200 pl-2">

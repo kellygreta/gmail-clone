@@ -10,8 +10,13 @@
 
 	import { getContext } from 'svelte';
 	let searchMailSent = getContext('searchMailSent');
+	//console.log(searchMailSent);
 
-	console.log(searchMailSent);
+	// Oldest first
+	//console.log(myArray.sort((a, b) => a.date.localeCompare(b.date)));
+
+	// Newest first
+	//console.log(myArray.sort((a, b) => -a.date.localeCompare(b.date)));
 
 	function getSentEmailData() {
 		let emails = browser ? window.localStorage.getItem('emails') : null;
@@ -89,6 +94,8 @@
 				propSpecial={mail.special}
 				propID={mail.id}
 				propData={mail.time}
+				propDrag={mail.drag}
+				propIndex={emails.indexOf(mail)}
 			/>
 		{/each}
 	{/if}

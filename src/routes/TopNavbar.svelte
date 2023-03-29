@@ -10,20 +10,17 @@
 	//TODO usare gli store
 	export function searchMail(query) {
 		//let emails = browser ? window.localStorage.getItem('emails') : null;
-		console.log('search mail + query: ', query);
+		//console.log('search mail + query: ', query);
 		if (query.length > 1 && emails != null) {
 			emails = JSON.parse(emails);
-			console.log('qui');
-			console.log(
-				'risultati ricerca: ',
-				emails.filter((email) => email.body.toLowerCase().includes(query.toLowerCase()))
-			);
+			//console.log('qui');
+			//console.log(	'risultati ricerca: ',				emails.filter((email) => email.body.toLowerCase().includes(query.toLowerCase()))		);
 			return emails.filter((email) => email.body.toLowerCase().includes(query.toLowerCase()));
 		}
 	}
 
 	//TODO non funziona!!
-	console.log(searchMail(query));
+	//console.log(searchMail(query));
 
 	/*myInput:onfocus = function () {
 		document.getElementById('resultMail').style.display = 'block';
@@ -69,46 +66,20 @@
 				</svg>
 			</div>
 			<input
-				type="text"
-				id="voice-search"
-				class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-				placeholder="Search Mockups, Logos, Design Templates..."
-				required
-			/>
-			<button type="button" class="absolute inset-y-0 right-0 flex items-center pr-3">
-				<svg
-					aria-hidden="true"
-					class="h-4 w-4 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-					fill="currentColor"
-					viewBox="0 0 20 20"
-					xmlns="http://www.w3.org/2000/svg"
-					><path
-						fill-rule="evenodd"
-						d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z"
-						clip-rule="evenodd"
-					/></svg
-				>
-			</button>
-		</div>
-	</div>
-	<div>
-		<div class="mt-3 mb-3 flex w-full space-x-1 rounded-md bg-slate-200">
-			<span class="py-5">
-				<img class="h-5" src="/images/cerca.png" alt="search-logo" />
-			</span>
-			<input
 				bind:value={query}
 				on:keyup={() => {
 					searchMail(query);
 				}}
-				class="rounded-md bg-slate-200  pl-3 text-black placeholder-slate-500 outline-none focus:bg-white"
+				class="pl-p-2.5 block w-full rounded-md  bg-slate-200 pl-10 text-sm text-black placeholder-slate-500 outline-none focus:bg-white"
 				name="cerca"
 				id="cerca"
 				type="text"
 				placeholder="Cerca nella Posta"
+				required
 			/>
 		</div>
 	</div>
+
 	<div class="flex items-center space-x-10 px-3">
 		<a href="/">
 			<div class="flex items-center space-x-1 rounded-full hover:bg-slate-200" />

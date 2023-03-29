@@ -25,7 +25,8 @@
 					body: info.body,
 					special: false,
 					deleted: false,
-					id: info.idm
+					id: info.idm,
+					drag: false
 				};
 				emailsAPI.push(email);
 				if (browser) {
@@ -80,6 +81,8 @@
 			propSubject={mail.subject}
 			propSpecial={mail.special}
 			propID={mail.id}
+			propDrag={mail.drag}
+			propIndex={emailsAPI.indexOf(mail)}
 		/>
 	{/each}
 </div>

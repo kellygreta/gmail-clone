@@ -1,6 +1,5 @@
 <script>
 	import dayjs from 'dayjs';
-	import relativeTime from 'dayjs/plugin/relativeTime';
 
 	export let writeMail = false;
 	let recipient = [];
@@ -8,7 +7,6 @@
 	let imgPreview;
 	let emailBody = '';
 	let count = 300;
-	import { browser } from '$app/environment';
 	let files = [];
 
 	// dayjs.extend(relativeTime);
@@ -77,7 +75,8 @@
 			special: false,
 			deleted: false,
 			id: (count = count + 1),
-			time: dayjs().toISOString()
+			time: dayjs().toISOString(),
+			drag: true
 		};
 
 		emails.push(email);

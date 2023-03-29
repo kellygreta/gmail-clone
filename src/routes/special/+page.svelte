@@ -57,6 +57,9 @@
 				propSubject={mail.subject}
 				propSpecial={mail.special}
 				propID={mail.id}
+				propData={mail.time}
+				propDrag={mail.drag}
+				propIndex={emails.indexOf(mail)}
 			/>
 		{/if}
 	{/each}

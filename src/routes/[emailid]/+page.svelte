@@ -35,25 +35,25 @@
 
 	function updateSpecial() {
 		if (email.sender == 'gvigano@efebia.com') {
-			console.log('click on update special sent');
+			//console.log('click on update special sent');
 			const toUpdate = emails.find((toDelete) => toDelete.id == email.id);
-			console.log('toUpdate', toUpdate);
-			console.log('toUpdate.special prima', toUpdate.special);
+			//console.log('toUpdate', toUpdate);
+			//console.log('toUpdate.special prima', toUpdate.special);
 			toUpdate.special = !toUpdate.special;
-			console.log('toUpdate.special dopo', toUpdate.special);
+			//console.log('toUpdate.special dopo', toUpdate.special);
 			emails = emails;
 			window.localStorage.setItem('emails', JSON.stringify(emails));
-			console.log(emails);
+			//console.log(emails);
 		} else {
-			console.log('click on update special API');
+			//console.log('click on update special API');
 			const toUpdate = emailsAPI.find((toDelete) => toDelete.id == email.id);
-			console.log('toUpdate', toUpdate);
-			console.log('toUpdate.special prima', toUpdate.special);
+			//console.log('toUpdate', toUpdate);
+			//console.log('toUpdate.special prima', toUpdate.special);
 			toUpdate.special = !toUpdate.special;
-			console.log('toUpdate.special dopo', toUpdate.special);
+			//console.log('toUpdate.special dopo', toUpdate.special);
 			emailsAPI = emailsAPI;
 			window.localStorage.setItem('emailsAPI', JSON.stringify(emailsAPI));
-			console.log(emailsAPI);
+			//console.log(emailsAPI);
 		}
 	}
 
@@ -66,7 +66,7 @@
 		} else {
 			console.log('sono qui API');
 			const index = emailsAPI.findIndex((toDelete) => toDelete.id == email.id);
-			console.log('index', index);
+			//console.log('index', index);
 			emailsAPI.splice(index, 1);
 			emailsAPI = emailsAPI;
 			window.localStorage.setItem('emailsAPI', JSON.stringify(emailsAPI));
