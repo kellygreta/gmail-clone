@@ -1,6 +1,5 @@
 <script>
 	import dayjs from 'dayjs';
-	import { browser } from '$app/environment';
 
 	export let propSender;
 	export let propSubject;
@@ -9,7 +8,6 @@
 	export let propData;
 	export let propDrag;
 	export let propIndex;
-	let item;
 
 	let data = dayjs(propData).locale('it-IT');
 	data = data.format(' DD MMM YYYY, H:mm:ss');
@@ -48,17 +46,17 @@
 		this.classList.remove('bg-slate-300');
 	}
 
-	function handleDrop(e) {
-		e.stopPropagation(); // stops the browser from redirecting.
+	// function handleDrop(e) {
+	// 	e.stopPropagation(); // stops the browser from redirecting.
 
-		let indexToChange = e.dataTransfer.getData('indexToChange');
-		indexToChange = propIndex;
-		console.log('propIndex', propIndex);
-		propIndex = e.dataTransfer.getData('index');
-		//dispatch('swapIndex()');
+	// 	let indexToChange = e.dataTransfer.getData('indexToChange');
+	// 	indexToChange = propIndex;
+	// 	console.log('propIndex', propIndex);
+	// 	propIndex = e.dataTransfer.getData('index');
+	// 	//dispatch('swapIndex()');
 
-		return false;
-	}
+	// 	return false;
+	// }
 
 	//console.log('item', item);
 
@@ -72,13 +70,12 @@
 <div
 	draggable={propDrag}
 	class=" group flex w-full border-b-2 border-gray-200 hover:shadow-xl"
-	bind:this={item}
 	on:dragstart={handleDragStart}
 	on:dragend={handleDragEnd}
 	on:dragover={handleDragOver}
 	on:dragenter={handleDragEnter}
 	on:dragleave={handleDragLeave}
-	on:drop={handleDrop}
+	on:drop={(event) => dispatch('handleDrop', { originalEvent: event, propIndex })}
 >
 	<div class="h-14 w-14 flex-none ">
 		<img class="h-5  object-contain" src="/images/check_box.png" alt="check_box" />

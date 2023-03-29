@@ -60,6 +60,27 @@
 		console.log('id', id);
 		window.location.href = `/specific/${mail.id}`;
 	}
+
+	const swapElements = (array, index1, index2) => {
+		let temp = array[index1];
+		console.log('temp', temp);
+		array[index1] = array[index2];
+		console.log('array[index2]', array[index2]);
+		array[index2] = temp;
+	};
+
+	function handleDrop(e, propIndex) {
+		//e.stopPropagation(); // stops the browser from redirecting.
+
+		//console.log('e.detail', e.detail);
+		swapElements(emails, e.detail.originalEvent.dataTransfer.getData('index'), propIndex);
+
+		emails = emails;
+		console.log('emails', emails);
+		window.localStorage.setItem('emails', JSON.stringify(emails));
+
+		return false;
+	}
 </script>
 
 <div class="z-1 absolute left-48 top-24 w-4/5 rounded-md">
@@ -85,17 +106,18 @@
 			/>
 		{/each}
 	{:else}
-		{#each emails as mail}
+		{#each emails as mail, i}
 			<EmailItem
 				on:special={() => updateSpecial(mail.id)}
 				on:delete={() => deleteEmail(mail.id)}
+				on:handleDrop={(event) => handleDrop(event, i)}
 				propSender={mail.sender}
 				propSubject={mail.subject}
 				propSpecial={mail.special}
 				propID={mail.id}
 				propData={mail.time}
 				propDrag={mail.drag}
-				propIndex={emails.indexOf(mail)}
+				propIndex={i}
 			/>
 		{/each}
 	{/if}

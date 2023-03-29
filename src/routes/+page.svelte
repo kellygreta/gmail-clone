@@ -81,6 +81,7 @@
 			propSubject={mail.subject}
 			propSpecial={mail.special}
 			propID={mail.id}
+			propData={''}
 			propDrag={mail.drag}
 			propIndex={emailsAPI.indexOf(mail)}
 		/>
