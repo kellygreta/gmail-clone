@@ -12,12 +12,6 @@
 	let searchMailSent = getContext('searchMailSent');
 	//console.log(searchMailSent);
 
-	// Oldest first
-	//console.log(myArray.sort((a, b) => a.date.localeCompare(b.date)));
-
-	// Newest first
-	//console.log(myArray.sort((a, b) => -a.date.localeCompare(b.date)));
-
 	function getSentEmailData() {
 		let emails = browser ? window.localStorage.getItem('emails') : null;
 
@@ -33,6 +27,20 @@
 	let emails = getSentEmailData();
 
 	setContext('emails', emails);
+
+	// Oldest first
+	function sortEmailsOldest() {
+		emails.sort((a, b) => a.time.localeCompare(b.time));
+		emails = emails;
+		window.localStorage.setItem('emails', JSON.stringify(emails));
+	}
+
+	// Newest first
+	function sortEmailsNewest() {
+		emails.sort((a, b) => -a.time.localeCompare(b.time));
+		emails = emails;
+		window.localStorage.setItem('emails', JSON.stringify(emails));
+	}
 
 	function updateSpecial(id) {
 		const email = emails.find((email) => email.id == id);
@@ -83,7 +91,7 @@
 	}
 </script>
 
-<div class="z-1 absolute left-48 top-24 w-4/5 rounded-md">
+<div class="z-1 absolute left-48 top-24 w-4/5 space-x-5 rounded-md">
 	<div class="flex border-b-2 border-gray-200">
 		<div class="h-14 w-14 flex-none">
 			<img class="h-5  object-contain" src="/images/check_box.png" alt="check_box" />
@@ -93,6 +101,26 @@
 		</div>
 		<div class="h-14 w-14 flex-initial">
 			<img class="h-5  object-contain" src="/images/more_vert.png" alt="more_vert-icon" />
+		</div>
+		<div class="h-fit w-14 flex-initial space-x-80">
+			<button
+				class="flex items-center rounded-lg bg-blue-200 py-2 px-4 hover:shadow-xl"
+				on:click={() => {
+					sortEmailsNewest();
+				}}
+			>
+				<p>Newest</p>
+			</button>
+		</div>
+		<div class="h-fit w-14 flex-initial ">
+			<button
+				class="flex items-center rounded-lg bg-blue-200 py-2 px-4 hover:shadow-xl"
+				on:click={() => {
+					sortEmailsOldest();
+				}}
+			>
+				<p>Oldest</p>
+			</button>
 		</div>
 	</div>
 	{#if searchMailSent != null && searchMailSent.lenght > 1}

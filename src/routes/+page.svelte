@@ -5,6 +5,8 @@
 	import { browser } from '$app/environment';
 	import { setContext } from 'svelte';
 	import EmailItem from './EmailItem.svelte';
+	import { alert } from '../stores.js';
+	import { onDestroy } from 'svelte';
 
 	function getAPIEmailData() {
 		let emailsAPI = browser ? window.localStorage.getItem('emailsAPI') : null;

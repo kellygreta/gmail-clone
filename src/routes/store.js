@@ -1,45 +1,38 @@
+import { stringify } from 'postcss';
 import { writable } from 'svelte/store';
 
-export interface SearchStoreModel<T extends Record<PropertyKey, any>> {
-	data: T[]
-	filtered: T[]
-	search: string
-}
-
-export const createSearchStore = <T extends Record<PropertyKey, any>>(
-	data: T[],
-) => {
-	const { subscribe, set, update } = writable<SearchStoreModel<T>>({
-		data: data,
-		filtered: data,
-		search: "",
-	})
-
+let createSearchStore = function (data) {
+	let _a = (0, store_1.writable)({
+			data: data,
+			filtered: data,
+			search: ''
+		}),
+		subscribe = _a.subscribe,
+		set = _a.set,
+		update = _a.update;
 	return {
-		subscribe,
-		set,
-		update,
-	}
-}
-
-export const searchHandler = <T extends Record<PropertyKey, any>>(
-	store: SearchStoreModel<T>,
-) => {
-	const searchTerm = store.search.toLowerCase() || ""
-	store.filtered = store.data.filter((item) => {
-		return item.searchTerms.toLowerCase().includes(searchTerm)
-	})
-}
+		subscribe: subscribe,
+		set: set,
+		update: update
+	};
+};
+exports.createSearchStore = createSearchStore;
+var searchHandler = function (store) {
+	var searchTerm = store.search.toLowerCase() || '';
+	store.filtered = store.data.filter(function (item) {
+		return item.searchTerms.toLowerCase().includes(searchTerm);
+	});
+};
+exports.searchHandler = searchHandler;
 
 //TODO settare i risultati della ricerca in base alla pagina in cui viene effetuata
-export const searchBarResult = writable(0);
+export const searchBarResult = writable('');
 let emails = {
-	//prendere utente sender con id casuale
-	//sender: await getSender(Math.floor(Math.random() * 10) + 1).email,
+	sender: stringify,
 	recipient: string,
 	subject: string,
 	body: string,
-	//attachments: data.get('attachments'),
+	attachments: string,
 	special: boolean,
 	deleted: boolean
 };
